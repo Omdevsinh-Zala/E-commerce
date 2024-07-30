@@ -40,7 +40,7 @@ export class SignupComponent implements AfterViewInit {
     const password: string = this.signUp.value.password;
 
     const user = {
-        name: firstName,
+        name: firstName + ' ' + lastName,
         email: email,
         password: password
       }

@@ -1,3 +1,40 @@
 <div class="container">
-    <p>home works!</p>
+    <div class="userInfo-wrap">
+        <div class="detail-wrap half">
+            <div class="info">User:</div>
+            <div class="user-detail">
+                {{firstName? firstName : 'Guest'}}
+            </div>
+        </div>
+        <div class="detail-wrap half">
+            <div class="info">User:</div>
+            <div class="user-detail">
+                {{lasName? lasName : 'Guest'}}
+            </div>
+        </div>
+        <div class="detail-wrap half">
+            <div class="info">User:</div>
+            <div class="user-detail">
+                {{gender? gender : 'Guest'}}
+            </div>
+        </div>
+        <div class="detail-wrap half">
+            <div class="info">User:</div>
+            <div class="user-detail">
+                {{phoneNumber? phoneNumber : 'Guest'}}
+            </div>
+        </div>
+        <div class="detail-wrap">
+            <div class="info">User:</div>
+            <div class="user-detail">
+                {{email? email : 'Guest'}}
+            </div>
+        </div>
+        <div class="detail-wrap">
+            <div class="info">User:</div>
+            <div class="user-detail">
+                {{address? address : 'Guest'}}
+            </div>
+        </div>
+    </div>
 </div>
