@@ -79,8 +79,15 @@ export class SearchComponent implements OnInit {
         }
       })
     } else {
+      this.productName = from(this.data()).pipe(
+        map((products) => {
+          return products.title;
+        }),
+        toArray()
+      );
+      this.list.nativeElement.style.height = '300px'
       this.span.nativeElement.style.display = 'block';
-      this.product.emit('')
+      this.product.emit('');
     }
   }
 

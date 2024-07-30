@@ -473,9 +473,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy{
       toArray()
     ).subscribe({
       next:(data) => {
-        if(data) {
+        if(data.length != 0) {
           this.searchDataSource = new MatTableDataSource<Products>(data);
           this.searchDataSource.paginator = this.paginator;
+        } else {
+          this.isSearched = false;
         }
       }
     })
