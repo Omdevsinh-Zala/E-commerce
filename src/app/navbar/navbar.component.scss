@@ -1,0 +1,138 @@
+header {
+  // background-color: lightblue;
+  .nav-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    .logo-wrap {
+      width: 50%;
+      font-size: 30px;
+      font-weight: 600;
+      @media (min-width: 769px) {
+        width: 30%;
+      }
+    }
+
+    .navbar-mobile-wrap {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+
+      &.nav-close {
+        @media (max-width: 769px) {
+          display: block;
+          width: 100%;
+          background-color: #f9f5f2;
+          padding: 15px 10px;
+        }
+      }
+
+      @media (max-width: 769px) {
+        display: none;
+        position: absolute;
+        top: 50px;
+      }
+
+      .navbar-wrap {
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        @media (max-width: 769px) {
+          flex-wrap: wrap;
+          gap: 15px;
+          max-width: fit-content;
+        }
+
+        .nav-links {
+          @media (max-width: 769px) {
+            width: 100%;
+          }
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: black;
+          font-weight: 600;
+          font-size: 20px;
+
+          &::after {
+            content: "";
+            position: relative;
+            height: 3px;
+            width: 100%;
+            background-color: black;
+            transform: scaleX(0);
+            transition: all 0.3s linear;
+            transform-origin: left;
+          }
+
+          &:hover::after {
+            display: block;
+            transform: scaleX(1);
+          }
+
+          &.current {
+            color: #e78125;
+            &::after {
+              display: block;
+              background-color: #e78125;
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+
+      .cart-wrap {
+        width: 50%;
+        text-align: end;
+        @media (max-width: 769px) {
+          margin-top: 15px;
+          text-align: start;
+          max-width: fit-content;
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: black;
+
+          &.current {
+            color: #e78125;
+          }
+        }
+      }
+    }
+
+    .nav-close-btn {
+      @media (min-width: 769px) {
+        display: none;
+      }
+    }
+  }
+
+  .nav-show {
+    animation: toggle 0.4s linear;
+    display: block;
+  }
+
+  .nav-hide {
+    animation: toggle 0.4s linear reverse;
+  }
+  @keyframes toggle {
+    0% {
+      top: -100px;
+    }
+    100% {
+      top: 50px;
+    }
+  }
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background-color: #f9f5f2;
+}

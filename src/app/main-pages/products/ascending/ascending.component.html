@@ -1,0 +1,12 @@
+<div class="ascending-wrap">
+    <mat-radio-group
+    class="ascending-group"
+    [formControl]="ascendingForm"
+    (change)="changeValue($event)"
+    >
+        @for(category of ascendingGroup;track category) {
+            <mat-radio-button [value]="category">{{category}}</mat-radio-button>
+        }
+    </mat-radio-group>
+    <button mat-button (click)="clearButton()">Clear</button>
+</div>

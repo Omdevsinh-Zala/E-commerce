@@ -1,0 +1,49 @@
+<div class="card" routerLink="{{products()?.id}}">
+    <div class="discont-wrap" *ngIf="products().discountPercentage > 0.1">
+        <div class="discount">
+            -{{products()?.discountPercentage}}%
+        </div>
+    </div>
+    <div class="card-image-wrap">
+        <img [src]="products()?.thumbnail" />
+    </div>
+    <div class="card-header-wrap">
+        <h2 class="card-title">{{products()?.title}}</h2>
+        <p class="rating">
+            @if(products()?.rating == 5) {
+            <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
+            }@else if(products()?.rating > 4 &&products()?.rating < 5) { <mat-icon>
+                star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon>
+                }@else if(products()?.rating == 4) {
+                <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon>
+                }
+                @else if(products()?.rating > 3 && products()?.rating < 4) { <mat-icon>
+                    star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon>
+                    }@else if(products()?.rating == 3) { <mat-icon>
+                        star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
+                    }
+                    @else if(products()?.rating > 2 && products()?.rating < 3) { <mat-icon>
+                        star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
+                        }@else if(products()?.rating == 2) { <mat-icon>
+                            star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
+                        }
+                        @else if(products()?.rating > 1 && products()?.rating < 2) { <mat-icon>
+                            star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
+                            } @else if( products()?.rating == 1 ) {
+                            <mat-icon>
+                                star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
+                            }
+                            ({{products()?.rating}})
+        </p>
+    </div>
+    <div class="price-wrap">
+        <h2>{{(products().price) - (products().price * (products().discountPercentage/100)) | number:'1.1-2'}}$</h2>
+        <h3>{{products().price}}$</h3>
+    </div>
+    <div class="card-actions">
+        <div class="link-wrap">
+            <button class="btn cart-btn" title="add to cart"
+                (click)="addToCart(products(),$event)"><mat-icon>add_shopping_cart</mat-icon>Add To Cart</button>
+        </div>
+    </div>
+</div>

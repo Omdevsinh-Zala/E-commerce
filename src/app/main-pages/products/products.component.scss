@@ -1,0 +1,140 @@
+.cards-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .card {
+        width: 25%;
+        padding: 10px;
+    }
+}
+.filter-wrap {
+    margin: 0 0 20px 0;
+    position: fixed;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media(max-width: 1800px) {
+      flex-direction: row;
+      position: static;
+    }
+    @media(max-width: 900px) {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    @media(max-width: 550px) {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+}
+.spinner {
+    position: relative;
+    margin: 25% auto;
+    @media (max-width: 550px) {
+      margin: 25% -30%;
+    }
+}
+.more-btn-wrap {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+
+    .more-btn {
+        font-size: 20px;
+        font-weight: 500;
+        padding: 20px 75px;
+        border: 1px solid lightcoral;
+        color: lightcoral;
+        transition: all 0.2s linear;
+
+        &:hover {
+            background-color: lightcoral;
+            color: white;
+            transition: all 0.2s linear;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.3;
+        }
+    }
+}
+
+.content-container {
+  display: none;
+}
+
+.mat-mdc-table {
+  width: 100%;
+}
+
+tr.mat-mdc-footer-row,
+tr.mat-mdc-header-row {
+  font-weight: bold;
+}
+
+table {
+  margin-top: 15px;
+  background: transparent;
+}
+
+.table-header {
+  background-color: white;
+}
+
+::ng-deep tbody{
+  display: flex;
+  flex-wrap: wrap ;
+  width: 100% ;
+  height: 100% ;
+}
+
+.data-row {
+  width: 25%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  @media(max-width: 1200px) {
+    width: 33.33%;
+  }
+  @media(max-width: 900px) {
+    width: 50%;
+  }
+  @media(max-width: 550px) {
+    width: 100%;
+  }
+}
+
+.paginator {
+  background-color: white;
+  box-shadow: 0 14px 26px -13px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  @media (max-width: 550px) {
+    position: sticky;
+    top: 62px;
+    z-index: 2;
+  }
+}
+
+.product-data {
+  padding: 10px;
+  display: block;
+  border: none;
+  box-shadow: none;
+  @media(max-width: 900px){
+    padding: 5px;
+  }
+}
+
+.mat-mdc-table-sticky {
+  border-top: 1px solid #e0e0e0;
+}
+
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow: none;
+}
+.search-wrap {
+  margin-bottom: 18px;
+}

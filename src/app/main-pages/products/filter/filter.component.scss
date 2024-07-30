@@ -1,0 +1,17 @@
+.spinner {
+    position: relative;
+    margin: auto;
+    scale: 0.6;
+}
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    color: #e78125;
+
+    .category {
+        height: 32px;
+    }
+}

@@ -1,0 +1,46 @@
+.card {
+  height: 400px;
+  display: block;
+  padding: 5px 10px;
+  // background-color: aliceblue;
+  // border: 1px solid black;
+  border-radius: 8px;
+  transition: all 0.3s linear;
+  background-color: white;
+  box-shadow: 0 14px 26px -13px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .card-header-wrap {
+    height: 15%;
+    position: relative;
+
+    .card-title {
+        font-size: 22px;
+        line-height: 24px;
+    }
+  }
+
+  .card-image-wrap {
+    height: 70%;
+    width: 100%;
+    padding: 1px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .price-wrap {
+    margin-top: 35px;
+
+    .price {
+        font-size: 22px;
+        font-weight: 500;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<header>
+    <div class="container">
+        <nav class="nav-wrap">
+            <div class="logo-wrap">
+                MyCart
+            </div>
+            <div class="navbar-mobile-wrap" #hideNav>
+                <ul class="navbar-wrap">
+                    <!-- <li class="nav-links"><a routerLink="home" routerLinkActive="current" class="nav-link">Home</a></li> -->
+                    <li class="nav-links"><a routerLink="products" routerLinkActive="current" class="nav-link">Products</a></li>
+                </ul>
+                <div class="cart-wrap" [matBadge]="badgeCount">
+                    <a class="nav-link"
+                    title="Cart"
+                    routerLink="cart"
+                    routerLinkActive="current"
+                    >
+                        <mat-icon>shopping_cart</mat-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-close-btn">
+                <button class="btn toggle-btn" title="menu" (click)="toggleNav()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>

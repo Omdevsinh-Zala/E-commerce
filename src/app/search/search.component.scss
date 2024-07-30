@@ -1,0 +1,148 @@
+.info-wrap {
+  .content-wrap {
+    display: flex;
+    justify-content: space-between;
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .search-image {
+        position: absolute;
+        right: 10px;
+        margin-top: 5px;
+
+        mat-icon {
+          color: rgb(156, 156, 156);
+        }
+      }
+      .search {
+        padding: 5px 10px;
+        font-size: 20px;
+        width: 450px;
+        border: none;
+        padding: 12px 8px;
+        outline: none;
+        border-radius: 8px;
+        box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.262),
+          5px 5px 10px rgb(204, 204, 204);
+      }
+      .suggetions-wrap {
+        position: absolute;
+        top: 45px;
+        z-index: 2;
+        display: none;
+        width: 100%;
+
+        .title-list {
+          height: calc(100px * 3);
+          overflow-y: scroll;
+          scrollbar-width: thin;
+          list-style: none;
+          background-color: white;
+          border-radius: 8px;
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.351), inset 5px 5px 10px rgba(207, 207, 207, 0.266);
+
+          .title {
+            padding: 18px 12px;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.391);
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(227, 227, 227, 0.585);
+            }
+          }
+        }
+      }
+    }
+
+    .account-wrap {
+      .account-info-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .user-title {
+          font-size: 22px;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .extra-wrap {
+        display: none;
+        position: absolute;
+        width: 13%;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        gap: 10px;
+        background-color: white;
+        padding: 10px 10px;
+        border-radius: 8px;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.199),
+          inset 3px 3px 10px rgba(247, 247, 247, 0.369);
+        z-index: 1;
+
+        .update-btn {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+        }
+
+        hr {
+          width: 100%;
+        }
+
+        .logout-btn {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+        }
+
+        .account-title {
+          font-size: 18px;
+        }
+
+        .login-btn {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          gap: 10px;
+          text-decoration: none;
+          color: #0f0f0f;
+        }
+
+        &.show {
+          display: flex;
+          animation: show 0.3s linear;
+        }
+
+        &.hide {
+          display: flex;
+          animation: show 0.3s linear reverse;
+        }
+
+        &.toggle {
+          display: flex;
+        }
+      }
+    }
+  }
+}
+@keyframes show {
+  0% {
+    margin-top: 200px;
+  }
+  100% {
+    margin-top: 10px;
+  }
+}

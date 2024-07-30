@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="form-wrap">
+        <div class="erorr-wrap" *ngIf="errorMessage.length != 0">
+            @for (error of errorMessage; track $index) {
+            <div class="error">
+                {{ error }}
+            </div>
+            }
+        </div>
+        <form class="sign-up-form" [formGroup]="signUp" (submit)="SignUpUser()">
+            <legend class="legend">Sign-up Form</legend>
+            <div class="first-part">
+                <mat-form-field class="first-name-wrap">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" type="text" required/>
+                </mat-form-field>
+                <mat-form-field class="last-name-wrap">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" type="text" required/>
+                </mat-form-field>
+            </div>
+            <div class="second-part">
+                <mat-form-field class="email-wrap">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" required/>
+                </mat-form-field>
+            </div>
+            <div class="third-part">
+                <mat-form-field class="pass-wrap">
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" required/>
+                </mat-form-field>
+            </div>
+            <div class="fourth-part">
+                <button [disabled]="!signUp.valid" class="btn submit-btn">Sign-up</button>
+            </div>
+        </form>
+    </div>
+    <div class="extra-wrap">
+        <h2 class="extra-text">Already signup?<a class="extra-link" routerLink="/login">Login</a></h2>
+    </div>
+</div>

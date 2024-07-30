@@ -1,0 +1,122 @@
+.card {
+  height: 100%;
+  height: 400px;
+  display: block;
+  padding: 5px 10px;
+  // background-color: aliceblue;
+  // border: 1px solid black;
+  border-radius: 12px;
+  transition: all 0.3s linear;
+  background-color: white;
+  box-shadow: 0 14px 26px -13px rgba(0, 0, 0, 0.2);
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .discont-wrap {
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    background-color: rgb(255, 97, 97);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding: 5px;
+
+    .discount {
+        font-size: 12px;
+        font-weight: 600;
+        color: white;
+    }
+  }
+
+  .card-header-wrap {
+    height: 15%;
+    position: relative;
+
+    .card-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .rating {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        font-weight: 600;
+        position: absolute;
+        bottom: -6px;
+        mat-icon {
+            color: gold;
+        }
+    }
+  }
+
+  .card-image-wrap {
+    height: 60%;
+    width: 100%;
+    padding: 1px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .price-wrap {
+    height: 10%;
+    display: flex;
+    gap: 10px;
+    padding-top: 20px;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    h3 {
+        font-size: 18px;
+        font-weight: 600;
+        color: rgba(37, 37, 37, 0.403);
+        text-decoration: line-through;
+    }
+  }
+
+  .card-actions {
+    position: relative;
+    bottom: 0;
+    height: 13%;
+
+    .link-wrap {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      align-items: center;
+
+      .cart-btn {
+        padding: 5px 15px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+        gap: 8px;
+        z-index: 1;
+        transition: all 0.2s linear;
+        &:hover {
+          color: #e78125;
+          background-color: black;
+          border-color: black;
+        }
+      }
+    }
+  }
+}
