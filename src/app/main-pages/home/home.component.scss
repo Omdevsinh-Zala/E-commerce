@@ -1,29 +1,71 @@
 .userInfo-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.188),
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.188),
     inset 5px 5px 10px rgba(208, 208, 208, 0.404);
 
-    .detail-wrap {
-        display: flex;
-        gap: 4px;
-        width: 100%;
-        padding: 22px 12px;
+  .detail-wrap {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    padding: 22px 12px;
 
-        &.half {
-            width: 50%;
-        }
-
-        .info {
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .user-detail {
-            font-size: 18px;
-            font-weight: 600;
-        }
+    &.half {
+      width: 50%;
     }
+
+    .info {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .user-detail {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .dull {
+      font-size: 18px;
+      font-weight: 600;
+      opacity: 0.5;
+    }
+  }
+}
+.button-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+
+  .btn {
+    padding: 10px 25px;
+    font-size: 18px;
+    text-decoration: none;
+    
+
+    &.update-btn {
+      border-radius: 8px;
+      color: #b88e2f;
+      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.259),
+        inset 3px 3px 5px rgba(202, 202, 202, 0.264);
+      background-color: #ffffff;
+      transition: all 0.3s linear;
+
+      &:hover {
+        background-color: #b88e2f;
+        color: #ffffff;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.39);
+      }
+    }
+
+    &.login-btn {
+        background-color: #ffffff;
+        color: #000;
+        border-bottom: 1px solid black;
+        border-radius: none;
+        font-weight: 500;
+    }
+  }
 }

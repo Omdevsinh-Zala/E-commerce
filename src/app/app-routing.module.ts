@@ -5,6 +5,7 @@ import { TitleService } from './service/title/title.service';
 import { MainRouterComponent } from './main-router/main-router.component';
 import { LoginComponent } from './form/login/login.component';
 import { SignupComponent } from './form/signup/signup.component';
+import { UpdateComponent } from './form/update/update.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path:'sign-up',
     component:SignupComponent
+  },
+  {
+    path:'update-profile',
+    component:UpdateComponent
   },
   {
     path:'',

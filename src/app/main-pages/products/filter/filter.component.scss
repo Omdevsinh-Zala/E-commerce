@@ -10,8 +10,21 @@
     overflow-y: scroll;
     scrollbar-width: none;
     color: #e78125;
+    // @media (max-width: 1800px) {
+    //     flex-direction: row;
+    //     flex-wrap: wrap;
+    // }
 
     .category {
         height: 32px;
+        // @media (max-width: 1800px) {
+        //     width: 33.33%;
+        // }
+        // @media (max-width: 1200px) {
+        //     width: 50%;
+        // }
+        // @media (max-width: 1000px) {
+        //     width: 100%;
+        // }
     }
 }
