@@ -26,6 +26,11 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
+import { UpdateComponent } from './form/update/update.component';
+import { HomeComponent } from './main-pages/home/home.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,7 @@ import { MatInput } from '@angular/material/input';
     MainRouterComponent,
     LoginComponent,
     SignupComponent,
+    UpdateComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,9 @@ import { MatInput } from '@angular/material/input';
     MatInput,
     MatLabel,
     MatError,
-    FirebaseAppModule
+    FirebaseAppModule,
+    MatRadioModule,
+    MatSelectModule,
   ],
   providers: [
     provideAnimationsAsync(),

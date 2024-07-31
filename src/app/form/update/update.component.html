@@ -19,6 +19,19 @@
                     <input matInput formControlName="lastName" type="text" required/>
                 </mat-form-field>
             </div>
+            <div class="first-part">
+                <mat-form-field class="first-name-wrap">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="male">Male</mat-option>
+                        <mat-option value="female">Female</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="last-name-wrap">
+                    <mat-label>Phone number</mat-label>
+                    <input matInput formControlName="phoneNumber" type="tel" required/>
+                </mat-form-field>
+            </div>
             <div class="third-part">
                 <mat-form-field class="email-wrap">
                     <mat-label>Email</mat-label>
@@ -32,7 +45,7 @@
                 </mat-form-field>
             </div>
             <div class="fifth-part">
-                <button [disabled]="!updateForm.valid" class="btn submit-btn">Update</button>
+                <button [disabled]="!updateForm.valid || updateForm.pristine" class="btn submit-btn">Update</button>
             </div>
         </form>
     </div>

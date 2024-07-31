@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, user } from '@angular/fire/auth';
 import { from, ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -8,7 +7,7 @@ import { from, ReplaySubject } from 'rxjs';
 })
 export class UserService {
 
-  constructor(private router:Router) { }
+  constructor() { }
 
   fireBaseAuth = inject(Auth);
   user = user(this.fireBaseAuth);
@@ -46,4 +45,9 @@ export class UserService {
     })
   }
 
+  auth = getAuth();
+  updateUser(userName: string) {
+    let promise = this.auth.updateCurrentUser(this.fireBaseAuth.currentUser).then((Response) => updateProfile(this.fireBaseAuth.currentUser , {displayName: userName}));
+    return from(promise);
+  }
 }
