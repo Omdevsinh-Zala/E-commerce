@@ -2,6 +2,8 @@ import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user/user.service';
 import { Router } from '@angular/router';
+import { UserProfileService } from '../../service/profile/user-profile.service';
+import { UserProfile } from '../../service/profile/user-profile';
 
 @Component({
   selector: 'app-signup',
@@ -25,6 +27,7 @@ export class SignupComponent implements AfterViewInit {
   router = inject(Router);
   errorMessage: string[] = [];
   timer:any;
+  post = inject(UserProfileService);
 
   signUp = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -48,6 +51,19 @@ export class SignupComponent implements AfterViewInit {
     this.postService.register(user).subscribe({
       next:() => {
         this.router.navigate(['/login'])
+        let postUser:UserProfile = {
+          firstName: firstName,
+          lastName: lastName,
+          email:email,
+          gender: null,
+          phoneNumber: null,
+          address: null
+        }
+        this.post.postUserProfile(postUser).subscribe({
+          error:(err) => {
+            console.error(err)
+          }
+        });
       },
       error:(err) => {
         this.errorMessage.push(err.code.split('/')[1]);

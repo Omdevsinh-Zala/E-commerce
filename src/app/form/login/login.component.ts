@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user/user.service';
 import { Router } from '@angular/router';
 import { PreviousUrlService } from '../../service/previousUrl/previous-url.service';
+import { UserProfileService } from '../../service/profile/user-profile.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
     email: new FormControl('',[Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required])
   })
-
+  backEnd = inject(UserProfileService);
   router = inject(Router);
 
   errorMessage:string[] = [];
