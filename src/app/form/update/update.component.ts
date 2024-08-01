@@ -24,27 +24,27 @@ export class UpdateComponent implements OnInit {
     this.service.user.subscribe({
       next: (data) => {
         this.email = data.email;
-      },
-    });
-    this.backEnd.getUserProfile().subscribe({
-      next: (data: { [key: string]: UserProfile }) => {
-        let keys = Object.keys(data);
-        let value = Object.values(data);
-        let index: number = 0;
-        let user: UserProfile[] = value.filter((data) => {
-          setTimeout(() => {
-            if (data['email'] == this.email) {
-              if (data['gender'] && data['phoneNumber'] && data['address']) {
-                this.gender = data['gender'];
-                this.phoneNumber = data['phoneNumber'];
-                this.address = data['address'];
+        this.backEnd.getUserProfile().subscribe({
+          next: (data: { [key: string]: UserProfile }) => {
+            let keys = Object.keys(data);
+            let value = Object.values(data);
+            let index: number = 0;
+            let user: UserProfile[] = value.filter((data) => {
+              if (data['email'] == this.email) {
+                if (data['gender'] && data['phoneNumber'] && data['address']) {
+                  this.gender = data['gender'];
+                  this.phoneNumber = data['phoneNumber'];
+                  this.address = data['address'];
+                  this.watch();
+                  index = value.findIndex(
+                    (data) => data['email'] == this.email
+                  );
+                  let key = keys[index];
+                  this.endPoint.next(key);
+                }
               }
-            }
-            this.watch();
-            index = value.findIndex((data) => data['email'] == this.email);
-            let key = keys[index];
-            this.endPoint.next(key);
-          }, 500);
+            });
+          },
         });
       },
     });
@@ -122,8 +122,8 @@ export class UpdateComponent implements OnInit {
                 this.successMessage = 'Update Profile';
                 clearTimeout(this.successTimer);
                 this.successTimer = setTimeout(() => {
-                  this.router.navigate(['/home']);
                   this.successMessage = '';
+                  this.router.navigate(['/home']);
                 }, 1000);
               },
             });
