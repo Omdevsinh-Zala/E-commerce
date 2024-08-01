@@ -29,6 +29,7 @@ export class CartBadgeService {
 
   addToCart(data:Products) {
     if(this.user) {
+      this.product = JSON.parse(localStorage.getItem('UserCart') || '[]');
       let userIndex = this.product.findIndex((cart) => cart.user == this.user);
       if(userIndex != -1) {
         this.userIndex = userIndex;
@@ -42,12 +43,12 @@ export class CartBadgeService {
         this.count.next(this.product[userIndex].products.length)
       } else {
         let newData:UserCart = {
-          products:[data],
+          products:[{...data,quantity: 1}],
           user: this.user,
           completeOrder: false
         }
         this.product.push(newData);
-        this.count.next(this.product.length)
+        this.count.next(1)
       }
       localStorage.setItem('UserCart', JSON.stringify(this.product));
     } else {
@@ -118,6 +119,23 @@ export class CartBadgeService {
       this.products.splice(index, 1);
       localStorage.setItem('Cart', JSON.stringify(this.products));
       this.count.next(this.products.length);
+    }
+  }
+
+  updateCount() {
+    if(this.user) {
+      this.product = JSON.parse(localStorage.getItem('UserCart') || '[]');
+      let userIndex = this.product.findIndex((cart) => cart.user == this.user);
+      if(userIndex != -1) {
+        this.count.next(this.product[this.userIndex].products.length);
+      } else {
+        this.count.next(0);
+      }
+      return this.count$
+    } else {
+    this.products = JSON.parse(localStorage.getItem('Cart') || '[]');
+    this.count.next(this.products.length);
+    return this.count$;
     }
   }
 }
