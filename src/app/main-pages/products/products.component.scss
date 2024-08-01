@@ -42,8 +42,11 @@
 .spinner {
     position: relative;
     margin: 25% auto;
+    @media (max-width: 900px) {
+      margin: 185% -30%;
+    }
     @media (max-width: 550px) {
-      margin: 25% -30%;
+      margin: 250% -30%;
     }
 }
 .more-btn-wrap {
@@ -142,7 +145,7 @@ table {
   border: none;
   box-shadow: none;
   @media(max-width: 900px){
-    padding: 5px;
+    padding: 18px;
   }
 }
 
