@@ -19,7 +19,11 @@
 
     @media(max-width: 1800px) {
       flex-direction: row;
-      position: static;
+      position: absolute;
+      top: -59px;
+      left: 0;
+      right: 0;
+      z-index: 2;
     }
     @media(max-width: 900px) {
       display: grid;
@@ -64,6 +68,8 @@
 
 .content-container {
   display: none;
+  margin-top: 69px;
+  position: relative;
 }
 
 .mat-mdc-table {
@@ -119,7 +125,7 @@ table {
 }
 
 .product-data {
-  padding: 10px;
+  padding: 15px;
   display: block;
   border: none;
   box-shadow: none;

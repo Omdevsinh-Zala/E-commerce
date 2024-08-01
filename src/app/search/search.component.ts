@@ -99,6 +99,20 @@ export class SearchComponent implements OnInit {
         }),
         toArray()
       );
+      from(this.data()).pipe(
+        map((products) => {
+          return products.title
+        }),
+        toArray()
+      ).subscribe({
+        next:(data) => {
+          if(data.length < 5) {
+            this.list.nativeElement.style.height = `${data.length * 60}px`
+          } else {
+            this.list.nativeElement.style.height = '300px';
+          }
+        }
+      })
     }
     this.wrap.nativeElement.style.display = 'block';
   }
