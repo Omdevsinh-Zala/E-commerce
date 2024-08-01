@@ -58,12 +58,11 @@ export class ResetComponent {
         },1000);
       },
       error:(err) => {
-        this.errorMessage.push(err)
+        this.errorMessage.push(err.code.split('/')[1])
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
           this.errorMessage = [];
         },3000)
-        console.error(err)
       }
     })
   }

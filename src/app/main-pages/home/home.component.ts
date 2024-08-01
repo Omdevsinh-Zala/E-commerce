@@ -22,20 +22,21 @@ export class HomeComponent implements OnInit {
     });
     this.service.user.subscribe({
       next:(data) => {
-        this.email = data.email
+        this.email = data.email;
+        this.backEnd.getUserProfile().subscribe({
+          next:(data:{[key:string]:UserProfile}) => {
+            let value = Object.values(data);
+            let user = value.filter((data) => {
+              if(data.email == this.email) {
+                this.gender = data.gender
+                this.phoneNumber = data.phoneNumber
+                this.address = data.address
+              }
+            });
+          }
+        });
       }
     })
-    this.backEnd.getUserProfile().subscribe({
-      next:(data:{[key:string]:UserProfile}) => {
-        let value = Object.values(data);
-        let user = value.filter((data) => {
-          return data.email == this.email
-        });
-        this.gender = user[0].gender;
-        this.phoneNumber = user[0].phoneNumber;
-        this.address = user[0].address;
-      }
-    });
   }
 
   firstName:string | null = null;

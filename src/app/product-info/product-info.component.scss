@@ -89,6 +89,14 @@
       line-height: 30px;
       font-weight: 600;
       margin-bottom: 10px;
+      @media (max-width: 769px) {
+        font-size: 22px;
+        line-height: 24px;
+      }
+      @media (max-width: 450px) {
+        font-size: 18px;
+        line-height: 20px;
+      }
     }
 
     .card-text > h3 {
@@ -96,6 +104,14 @@
       line-height: 28px;
       font-weight: 510;
       color: rgb(130, 130, 130);
+      @media (max-width: 769px) {
+        font-size: 18px;
+        line-height: 20px;
+      }
+      @media (max-width: 450px) {
+        font-size: 16px;
+        line-height: 18px;
+      }
     }
   }
 
@@ -108,6 +124,14 @@
     line-height: 26px;
     font-weight: 400;
     margin-top: 10px;
+    @media (max-width: 769px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    @media (max-width: 450px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
 
   .rating-wrap {
@@ -118,6 +142,14 @@
     align-items: center;
     gap: 5px;
     margin: 15px 0;
+    @media (max-width: 769px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
+    @media (max-width: 450px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
 
     mat-icon {
       color: gold;
@@ -131,6 +163,14 @@
     position: relative;
     width: max-content;
     margin: 30px 0 0 0;
+    @media (max-width: 769px) {
+      font-size: 20px;
+      line-height: 22px;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
 
     .discount-percent-wrap {
       font-size: 18px;
@@ -142,6 +182,14 @@
       rotate: 34deg;
       color: red;
       animation: fade 1.5s linear infinite;
+      @media (max-width: 769px) {
+        font-size: 16px;
+        line-height: 18px;
+      }
+      @media (max-width: 450px) {
+        font-size: 14px;
+        line-height: 16px;
+      }
     }
   }
 
@@ -151,6 +199,14 @@
     margin: 15px 0;
     align-items: center;
     font-size: 20px;
+    @media (max-width: 769px) {
+      font-size: 18px;
+      line-height: 20px;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
 
     .tag {
       border: 1px solid black;
@@ -187,6 +243,14 @@
       border: 1px solid #e78125;
       border-radius: 10px;
       transition: all 0.2s linear;
+      @media (max-width: 769px) {
+        font-size: 20px;
+        line-height: 22px;
+      }
+      @media (max-width: 450px) {
+        font-size: 18px;
+        line-height: 20px;
+      }
       &:hover {
         color: #e78125;
         background-color: black;
@@ -204,7 +268,7 @@
   margin-top: 40px;
 }
 .spinner {
-  margin: 20% auto;
+  margin: 50% -35%;
 }
 @keyframes fade {
   0% {
@@ -244,12 +308,28 @@
           font-size: 26px;
           line-height: 26px;
           margin-bottom: 8px;
+          @media (max-width: 769px) {
+            font-size: 22px;
+            line-height: 24px;
+          }
+          @media (max-width: 450px) {
+            font-size: 18px;
+            line-height: 20px;
+          }
         }
 
         .review-text {
           font-size: 22px;
           line-height: 22px;
           margin-bottom: 8px;
+          @media (max-width: 769px) {
+            font-size: 20px;
+            line-height: 22px;
+          }
+          @media (max-width: 450px) {
+            font-size: 18px;
+            line-height: 20px;
+          }
         }
       }
 
@@ -257,6 +337,14 @@
         font-size: 18px;
         line-height: 20px;
         margin-bottom: 10px;
+        @media (max-width: 769px) {
+          font-size: 16px;
+          line-height: 18px;
+        }
+        @media (max-width: 450px) {
+          font-size: 14px;
+          line-height: 16px;
+        }
       }
 
       .more-content-wrap {
@@ -311,6 +399,14 @@
     margin: 15px 0;
     align-items: center;
     font-size: 20px;
+    @media (max-width: 769px) {
+      font-size: 18px;
+      line-height: 20px;
+    }
+    @media (max-width: 450px) {
+      font-size: 16px;
+      line-height: 18px;
+    }
 
     .tag {
       border: 1px solid black;
@@ -318,6 +414,14 @@
       border-radius: 8px;
       background: transparent;
       font-size: 20px;
+      @media (max-width: 769px) {
+        font-size: 18px;
+        line-height: 20px;
+      }
+      @media (max-width: 450px) {
+        font-size: 12px;
+        line-height: 18px;
+      }
       &:hover {
         cursor: pointer;
         color: #e78125;

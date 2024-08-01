@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
       next:(data) => {
         if(data != null) {
           setTimeout(() => {
-            this.router.navigate(['/products'])
+            this.router.navigate(['/products']);
           },1000)
         }
       }

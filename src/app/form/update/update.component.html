@@ -16,36 +16,36 @@
             <legend class="legend">Update Profile</legend>
             <div class="first-part">
                 <mat-form-field class="first-name-wrap">
-                    <mat-label>First Name</mat-label>
+                    <mat-label class="label" >First Name</mat-label>
                     <input matInput formControlName="firstName" type="text" required/>
                 </mat-form-field>
                 <mat-form-field class="last-name-wrap">
-                    <mat-label>Last Name</mat-label>
+                    <mat-label class="label" >Last Name</mat-label>
                     <input matInput formControlName="lastName" type="text" required/>
                 </mat-form-field>
             </div>
             <div class="first-part">
                 <mat-form-field class="first-name-wrap">
-                    <mat-label>Gender</mat-label>
+                    <mat-label class="label" >Gender</mat-label>
                     <mat-select formControlName="gender">
                         <mat-option value="male">Male</mat-option>
                         <mat-option value="female">Female</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="last-name-wrap">
-                    <mat-label>Phone number</mat-label>
+                    <mat-label class="label" >Phone number</mat-label>
                     <input matInput formControlName="phoneNumber" type="tel" required/>
                 </mat-form-field>
             </div>
             <div class="third-part">
                 <mat-form-field class="email-wrap">
-                    <mat-label>Email</mat-label>
+                    <mat-label class="label" >Email</mat-label>
                     <input matInput formControlName="email" type="email"/>
                 </mat-form-field>
             </div>
             <div class="fourth-part">
                 <mat-form-field class="address-wrap">
-                    <mat-label>Address</mat-label>
+                    <mat-label class="label" >Address</mat-label>
                     <textarea class="address" matInput formControlName="address"></textarea>
                 </mat-form-field>
             </div>
@@ -55,6 +55,6 @@
         </form>
     </div>
     <div class="extra-wrap">
-        <h2 class="extra-text">Not signup?<a class="extra-link" routerLink="/sign-up" >Sign-up</a></h2>
+        <h2 class="extra-text">Update Password?<a class="extra-link" routerLink="/login/update-password" >Click here...</a></h2>
     </div>
 </div>
