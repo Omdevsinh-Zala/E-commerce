@@ -37,7 +37,7 @@
       .suggetions-wrap {
         position: absolute;
         top: 45px;
-        z-index: 3;
+        z-index: 4;
         display: none;
         width: 100%;
 
@@ -98,7 +98,7 @@
         border-radius: 8px;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.199),
           inset 3px 3px 10px rgba(247, 247, 247, 0.369);
-        z-index: 3;
+        z-index: 4;
 
         &.small {
           width: 140px;

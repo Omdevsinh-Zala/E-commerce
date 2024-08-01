@@ -25,9 +25,6 @@ export class UpdateComponent implements OnInit {
       next: (data) => {
         this.email = data.email;
       },
-      complete: () => {
-        console.log(this.email);
-      },
     });
     this.backEnd.getUserProfile().subscribe({
       next: (data: { [key: string]: UserProfile }) => {
@@ -43,16 +40,12 @@ export class UpdateComponent implements OnInit {
                 this.address = data['address'];
               }
             }
+            this.watch();
             index = value.findIndex((data) => data['email'] == this.email);
             let key = keys[index];
             this.endPoint.next(key);
           }, 500);
         });
-      },
-      complete: () => {
-        setTimeout(() => {
-          this.watch();
-        }, 1000);
       },
     });
   }

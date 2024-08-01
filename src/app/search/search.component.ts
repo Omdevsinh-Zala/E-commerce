@@ -59,6 +59,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('wrap') wrap!: ElementRef;
   onInput() {
     if(this.search.nativeElement.value.length != 0) {
+      this.wrap.nativeElement.style.display = 'block';
       this.span.nativeElement.style.display = 'none';
       this.productName = from(this.data()).pipe(
         map((products) => {
@@ -79,6 +80,7 @@ export class SearchComponent implements OnInit {
         }
       })
     } else {
+      this.wrap.nativeElement.style.display = 'none';
       this.productName = from(this.data()).pipe(
         map((products) => {
           return products.title;
@@ -89,32 +91,6 @@ export class SearchComponent implements OnInit {
       this.span.nativeElement.style.display = 'block';
       this.product.emit('');
     }
-  }
-
-  onFocus() {
-    if(this.search.nativeElement.value.length == 0) {
-      this.productName = from(this.data()).pipe(
-        map((products) => {
-          return products.title
-        }),
-        toArray()
-      );
-      from(this.data()).pipe(
-        map((products) => {
-          return products.title
-        }),
-        toArray()
-      ).subscribe({
-        next:(data) => {
-          if(data.length < 5) {
-            this.list.nativeElement.style.height = `${data.length * 60}px`
-          } else {
-            this.list.nativeElement.style.height = '300px';
-          }
-        }
-      })
-    }
-    this.wrap.nativeElement.style.display = 'block';
   }
 
   onBlur() {

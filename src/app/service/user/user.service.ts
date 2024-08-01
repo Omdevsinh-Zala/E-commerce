@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updatePassword, updateProfile, user } from '@angular/fire/auth';
 import { from, ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -48,6 +48,11 @@ export class UserService {
   auth = getAuth();
   updateUser(userName: string) {
     let promise = this.auth.updateCurrentUser(this.fireBaseAuth.currentUser).then((Response) => updateProfile(this.fireBaseAuth.currentUser , {displayName: userName}));
+    return from(promise);
+  }
+
+  updatePass(password: string) {
+    let promise = updatePassword(this.fireBaseAuth.currentUser, password).then(() => {})
     return from(promise);
   }
 }

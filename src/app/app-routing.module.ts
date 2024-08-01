@@ -6,6 +6,7 @@ import { MainRouterComponent } from './main-router/main-router.component';
 import { LoginComponent } from './form/login/login.component';
 import { SignupComponent } from './form/signup/signup.component';
 import { UpdateComponent } from './form/update/update.component';
+import { ResetComponent } from './form/reset/reset.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path:'update-profile',
     component:UpdateComponent
+  },
+  {
+    path:'login/update-password',
+    component:ResetComponent
   },
   {
     path:'',

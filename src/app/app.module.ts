@@ -31,6 +31,7 @@ import { HomeComponent } from './main-pages/home/home.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ResetComponent } from './form/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
     LoginComponent,
     SignupComponent,
     UpdateComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,

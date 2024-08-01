@@ -1,7 +1,7 @@
 <div class="info-wrap">
     <div class="content-wrap">
         <div class="search-wrap">
-            <input type="search" (input)="onInput()" (focus)="onFocus()" (blur)="onBlur()" class="search" #search  /><span class="search-image" #span><mat-icon>search</mat-icon></span>
+            <input type="search" (input)="onInput()" (blur)="onBlur()" class="search" #search  /><span class="search-image" #span><mat-icon>search</mat-icon></span>
             <div class="suggetions-wrap" #wrap>
                 <ul class="title-list" #list>
                     @for(title of productName | async;track $index) {

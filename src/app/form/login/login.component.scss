@@ -24,6 +24,8 @@
     .second-part,
     .third-part {
       display: flex;
+      flex-wrap: wrap;
+      position: relative;
       width: 100%;
     }
 
@@ -113,7 +115,7 @@
   right: 12px;
   display: flex;
   flex-direction: column;
-  width: 12%;
+  width: 14%;
   gap: 8px;
 
   .error {
