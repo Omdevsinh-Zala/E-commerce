@@ -124,7 +124,7 @@ export class UpdateComponent implements OnInit {
                 this.successTimer = setTimeout(() => {
                   this.successMessage = '';
                   this.router.navigate(['/home']);
-                }, 1000);
+                }, 2000);
               },
             });
           },

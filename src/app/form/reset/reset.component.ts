@@ -55,7 +55,7 @@ export class ResetComponent {
         this.successTimer = setTimeout(() => {
           this.successMessage = '';
           this.router.navigate(['/login']);
-        },1000);
+        },2000);
       },
       error:(err) => {
         this.errorMessage.push(err.code.split('/')[1])
