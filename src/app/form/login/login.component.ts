@@ -10,12 +10,17 @@ import { UserProfileService } from '../../service/profile/user-profile.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor() {
+  }
+
+  ngOnInit(): void {
     this.auth.user$.subscribe({
       next:(data) => {
         if(data != null) {
-          this.router.navigate(['/products'])
+          setTimeout(() => {
+            this.router.navigate(['/products'])
+          },1000)
         }
       }
     });
@@ -33,7 +38,9 @@ export class LoginComponent {
   router = inject(Router);
 
   errorMessage:string[] = [];
-  timer: any
+  successMessage:string = '';
+  timer: any;
+  successTimer: any
   loginUser() {
     const user = {
       email: this.loginForm.value.email.trim(),
@@ -42,7 +49,12 @@ export class LoginComponent {
 
     this.auth.login(user).subscribe({
       next:() => {
-        this.router.navigate(['/products']);
+        this.successMessage = 'Login Successfully'
+        clearTimeout(this.successTimer);
+        this.successTimer = setTimeout(() => {
+          this.router.navigate(['/products']);
+          this.successMessage = '';
+        },1000)
       },
       error:(err) => {
         this.errorMessage.push(err.code.split('/')[1]);

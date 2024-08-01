@@ -18,7 +18,7 @@ export class SignupComponent implements AfterViewInit {
     this.postService.user$.subscribe({
       next:(data) => {
         if(data) {
-          this.router.navigate(['']);
+          this.router.navigate(['/products']);
         }
       }
     })
@@ -26,7 +26,9 @@ export class SignupComponent implements AfterViewInit {
 
   router = inject(Router);
   errorMessage: string[] = [];
+  successMessage:string = '';
   timer:any;
+  successTimer: any
   post = inject(UserProfileService);
 
   signUp = new FormGroup({
@@ -50,7 +52,12 @@ export class SignupComponent implements AfterViewInit {
 
     this.postService.register(user).subscribe({
       next:() => {
-        this.router.navigate(['/login'])
+        this.successMessage = 'Sign-up Successfully';
+        clearTimeout(this.successTimer);
+        this.successTimer = setTimeout(() => {
+          this.router.navigate(['/login'])
+          this.successMessage = '';
+        },1000)
         let postUser:UserProfile = {
           firstName: firstName,
           lastName: lastName,

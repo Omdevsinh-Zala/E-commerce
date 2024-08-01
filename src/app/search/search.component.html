@@ -15,9 +15,9 @@
                 <mat-icon>account_circle</mat-icon>
                 <h2 class="user-title"> {{user?user:'Guest'}} </h2>
             </div>
-            <div class="extra-wrap" #expand>
+            <div [ngClass]="user?'extra-wrap':'extra-wrap small'" #expand>
                 @if (user) {
-                <button class="btn update-btn">
+                <button routerLink="/home" class="btn update-btn">
                     <mat-icon>settings</mat-icon>
                     <h3 class="account-title">
                         Account overview

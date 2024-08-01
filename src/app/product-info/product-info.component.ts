@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Swiper } from 'swiper/bundle'
 import { ProductsService } from '../service/product/products.service';
@@ -7,6 +7,7 @@ import { filter, from, toArray } from 'rxjs';
 import { PreviousUrlService } from '../service/previousUrl/previous-url.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { CartBadgeService } from '../service/cartBadge/cart-badge.service';
 
 @Component({
   selector: 'app-product-info',
@@ -167,18 +168,10 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
 
   //For add to cart functionality
   product: any[] = JSON.parse(localStorage.getItem('Cart') || '[]');
-
+  count = inject(CartBadgeService);
   addToCart(data: Products, e: Event) {
     e.stopImmediatePropagation();
-    this.product = JSON.parse(localStorage.getItem('Cart') || '[]');
-    let index = this.product.findIndex((product) => product.id === data.id);
-    if (index !== -1) {
-      this.product[index].quantity++;
-    } else {
-      data.quantity = 1;
-      this.product.push(data);
-    }
-    localStorage.setItem('Cart', JSON.stringify(this.product));
+    this.count.addToCart(data);
   }
 
   //for previous page

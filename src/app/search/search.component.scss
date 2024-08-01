@@ -2,6 +2,11 @@
   .content-wrap {
     display: flex;
     justify-content: space-between;
+    @media (max-width: 770px) {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 25px;
+    }
 
     .search-wrap {
       display: flex;
@@ -10,23 +15,24 @@
 
       .search-image {
         position: absolute;
-        right: 10px;
+        left: 10px;
         margin-top: 5px;
-
         mat-icon {
           color: rgb(156, 156, 156);
         }
       }
       .search {
-        padding: 5px 10px;
         font-size: 20px;
         width: 450px;
         border: none;
-        padding: 12px 8px;
+        padding: 12px 20px 12px 38px;
         outline: none;
         border-radius: 8px;
         box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.262),
           5px 5px 10px rgb(204, 204, 204);
+          @media (max-width: 350px) {
+            width: 100%;
+          }
       }
       .suggetions-wrap {
         position: absolute;
@@ -42,7 +48,8 @@
           list-style: none;
           background-color: white;
           border-radius: 8px;
-          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.351), inset 5px 5px 10px rgba(207, 207, 207, 0.266);
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.351),
+            inset 5px 5px 10px rgba(207, 207, 207, 0.266);
 
           .title {
             padding: 18px 12px;
@@ -50,12 +57,12 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.391);
 
             &:last-child {
-                border-bottom: none;
+              border-bottom: none;
             }
 
             &:hover {
-                cursor: pointer;
-                background-color: rgba(227, 227, 227, 0.585);
+              cursor: pointer;
+              background-color: rgba(227, 227, 227, 0.585);
             }
           }
         }
@@ -63,10 +70,13 @@
     }
 
     .account-wrap {
+      @media (max-width: 770px) {
+      }
       .account-info-wrap {
         display: flex;
         align-items: center;
         gap: 8px;
+        width: fit-content;
 
         .user-title {
           font-size: 22px;
@@ -79,7 +89,7 @@
       .extra-wrap {
         display: none;
         position: absolute;
-        width: 13%;
+        width: 185px;
         flex-wrap: wrap;
         margin-top: 10px;
         gap: 10px;
@@ -89,6 +99,10 @@
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.199),
           inset 3px 3px 10px rgba(247, 247, 247, 0.369);
         z-index: 1;
+
+        &.small {
+          width: 140px;
+        }
 
         .update-btn {
           display: flex;
@@ -108,8 +122,14 @@
           gap: 10px;
         }
 
+        mat-icon {
+          width: 20%;
+        }
+
         .account-title {
-          font-size: 18px;
+          width: 80%;
+          font-size: 14px;
+          text-align: left;
         }
 
         .login-btn {

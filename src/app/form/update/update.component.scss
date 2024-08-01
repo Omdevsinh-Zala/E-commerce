@@ -165,3 +165,18 @@
       transform: translateX(0px);
     }
   }
+  .success-wrap {
+    position: fixed;
+    top: 14px;
+    right: 12px;
+    width: 16%;
+  
+    .success {
+      padding: 14px 8px 14px 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.173), inset 5px 5px 10px rgba(255, 255, 255, 0.367);
+      border-radius: 8px;
+      font-size: 18px;
+      line-height: 20px;
+      color: cadetblue;
+    }
+  }

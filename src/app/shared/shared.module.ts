@@ -3,6 +3,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { SearchComponent } from '../search/search.component';
 import { MatIcon } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -14,7 +15,8 @@ import { MatOptionModule } from '@angular/material/core';
     CommonModule,
     MatIcon,
     MatOptionModule,
-    AsyncPipe
+    AsyncPipe,
+    RouterLink
   ],
   exports:[
     SearchComponent

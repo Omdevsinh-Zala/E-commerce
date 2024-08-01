@@ -2,11 +2,12 @@ import { AfterViewInit, Component, inject, OnInit, ViewChild } from '@angular/co
 import { Products } from '../../service/product/products';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, from, map, Observable, scan, takeLast } from 'rxjs';
-import { Params } from '@angular/router';
+import { from, map, Observable, scan, takeLast } from 'rxjs';
+import { Params, Router } from '@angular/router';
 import { PreviousUrlService } from '../../service/previousUrl/previous-url.service';
 import { UserService } from '../../service/user/user.service';
 import { UserCart } from '../../service/cartBadge/user-cart';
+import { CartBadgeService } from '../../service/cartBadge/cart-badge.service';
 
 @Component({
   selector: 'app-cart',
@@ -94,4 +95,25 @@ export class CartComponent implements OnInit, AfterViewInit {
   //for previous page
   previousPage: string = '';
   queryParams!: Params;
+
+  //for buying producst
+  count = inject(CartBadgeService);
+  router = inject(Router);
+  buyNow() {
+    if(this.user) {
+      let data:UserCart[] = JSON.parse(localStorage.getItem('UserCart') || '[]');
+      let userIndex = data.findIndex((cart) => cart.user == this.user);
+      if(userIndex != -1) {
+        data.splice(userIndex,1);
+      localStorage.setItem('UserCart',JSON.stringify(data));
+      this.dataSource = new MatTableDataSource<Products>(null);
+      this.dataSource.paginator = this.paginator;
+      this.totalPrice = 0;
+      this.ProductData.length = 0;
+      this.count.updateCount();
+      }
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }
