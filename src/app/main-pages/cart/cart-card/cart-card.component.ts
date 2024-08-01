@@ -44,7 +44,6 @@ export class CartCardComponent implements OnChanges, OnInit {
       this.product = JSON.parse(localStorage.getItem('UserCart') || '[]');
       let userIndex = this.product.findIndex((cart) => cart.user == this.user);
       let index = this.product[userIndex].products.findIndex((product) => product.id == data);
-      console.log(userIndex, index)
       this.product[userIndex].products[index].quantity++;
       localStorage.setItem('UserCart', JSON.stringify(this.product));
     } else {

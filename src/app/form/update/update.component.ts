@@ -31,7 +31,6 @@ export class UpdateComponent implements OnInit {
             let index: number = 0;
             let user: UserProfile[] = value.filter((data) => {
               if (data['email'] == this.email) {
-                if (data['gender'] && data['phoneNumber'] && data['address']) {
                   this.gender = data['gender'];
                   this.phoneNumber = data['phoneNumber'];
                   this.address = data['address'];
@@ -41,7 +40,6 @@ export class UpdateComponent implements OnInit {
                   );
                   let key = keys[index];
                   this.endPoint.next(key);
-                }
               }
             });
           },
