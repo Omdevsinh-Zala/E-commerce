@@ -42,7 +42,7 @@ export class CartCardComponent implements OnChanges, OnInit {
     e.stopImmediatePropagation();
     if(this.user) {
       this.product = JSON.parse(localStorage.getItem('UserCart') || '[]');
-      let userIndex = this.product.findIndex((cart) => cart.user);
+      let userIndex = this.product.findIndex((cart) => cart.user == this.user);
       let index = this.product[userIndex].products.findIndex((product) => product.id == data);
       console.log(userIndex, index)
       this.product[userIndex].products[index].quantity++;
