@@ -1,7 +1,15 @@
 .form-wrap {
   display: block;
-  margin: 10% auto 5%;
+  margin: 120px auto 5%;
   width: 50%;
+  @media (max-width: 900px) {
+    width: 80%;
+    margin-top: 120px;
+  }
+  @media (max-width: 550px) {
+    width: 100%;
+    margin-top: 120px;
+  }
 
   .sign-up-form {
     display: flex;
@@ -11,6 +19,9 @@
     border-radius: 12px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.233),
       inset 5px 5px 10px rgba(232, 232, 232, 0.338);
+    @media (max-width: 500px) {
+      padding: 30px 10px;
+    }
 
     .legend {
       font-size: 32px;
@@ -18,6 +29,21 @@
       display: block;
       margin: 0 auto;
       opacity: 0.8;
+      @media (max-width: 769px) {
+        font-size: 22px;
+      }
+      @media (max-width: 500px) {
+        font-size: 20px;
+      }
+    }
+
+    .label {
+      @media (max-width: 769px) {
+        font-size: 18px;
+      }
+      @media (max-width: 500px) {
+        font-size: 14px;
+      }
     }
 
     .first-part,
@@ -35,6 +61,12 @@
       border: none;
       padding: 5px 10px;
       font-size: 18px;
+      @media (max-width: 769px) {
+        font-size: 18px;
+      }
+      @media (max-width: 500px) {
+        font-size: 14px;
+      }
     }
 
     .input::placeholder {
@@ -86,6 +118,12 @@
         padding: 10px 35px;
         border-radius: 8px;
         transition: all 0.2s linear;
+        @media (max-width: 769px) {
+          font-size: 20px;
+        }
+        @media (max-width: 500px) {
+          font-size: 18px;
+        }
 
         &:hover {
           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.148);
@@ -106,6 +144,12 @@
     margin: 0 auto;
     width: fit-content;
     font-weight: 500;
+    @media (max-width: 769px) {
+      font-size: 22px;
+    }
+    @media (max-width: 500px) {
+      font-size: 20px;
+    }
   }
 }
 
@@ -115,13 +159,16 @@
   right: 12px;
   display: flex;
   flex-direction: column;
-  width: 14%;
+  width: 195px;
   gap: 8px;
+  border-radius: 8px;
+  z-index: 3;
+  background-color: #fff;
 
   .error {
-    padding: 20px 8px 0 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.173), inset 5px 5px 10px rgba(255, 255, 255, 0.367);
-    border-radius: 8px;
+    padding: 14px 20px 0 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.173),
+      inset 5px 5px 10px rgba(255, 255, 255, 0.367);
     font-size: 18px;
     line-height: 20px;
     color: red;
@@ -169,12 +216,15 @@
   position: fixed;
   top: 14px;
   right: 12px;
-  width: 14%;
+  width: 195px;
+  border-radius: 8px;
+  background-color: #fff;
+  z-index: 3;
 
   .success {
     padding: 14px 8px 14px 20px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.173), inset 5px 5px 10px rgba(255, 255, 255, 0.367);
-    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.173),
+      inset 5px 5px 10px rgba(255, 255, 255, 0.367);
     font-size: 18px;
     line-height: 20px;
     color: cadetblue;
