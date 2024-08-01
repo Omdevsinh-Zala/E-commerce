@@ -11,6 +11,11 @@ header {
       width: 50%;
       font-size: 30px;
       font-weight: 600;
+
+      .main-link{
+        text-decoration: none;
+        color: black;
+      }
       @media (min-width: 769px) {
         width: 30%;
       }

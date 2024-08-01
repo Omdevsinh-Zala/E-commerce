@@ -23,7 +23,13 @@
       top: -59px;
       left: 0;
       right: 0;
-      z-index: 2;
+      z-index: 3;
+      @media (max-width: 900px) {
+        top: -115px;
+      }
+      @media (max-width: 637px) {
+        top: -228px;
+      }
     }
     @media(max-width: 900px) {
       display: grid;
@@ -70,6 +76,12 @@
   display: none;
   margin-top: 69px;
   position: relative;
+  @media (max-width: 900px) {
+    margin-top: 127px;
+  }
+  @media (max-width: 637px) {
+    margin-top: 240px;
+  }
 }
 
 .mat-mdc-table {
