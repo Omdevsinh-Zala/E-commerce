@@ -8,5 +8,5 @@ export const environment = {
         messagingSenderId: "97327674034",
         appId: "1:97327674034:web:60740dde37f52ee7538fab",
     },
-    forUsers: "https://cart-4a681-default-rtdb.firebaseio.com/users"
+    forUsers: "https://cart-4a681-default-rtdb.firebaseio.com"
 };
