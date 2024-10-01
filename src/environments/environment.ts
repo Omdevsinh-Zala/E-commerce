@@ -6,6 +6,7 @@ export const environment = {
         projectId: "cart-4a681",
         storageBucket: "cart-4a681.appspot.com",
         messagingSenderId: "97327674034",
-        appId: "1:97327674034:web:60740dde37f52ee7538fab"
-    }
+        appId: "1:97327674034:web:60740dde37f52ee7538fab",
+    },
+    forUsers: "https://cart-4a681-default-rtdb.firebaseio.com/users"
 };
