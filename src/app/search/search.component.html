@@ -5,7 +5,11 @@
             <div class="suggetions-wrap" #wrap>
                 <ul class="title-list" #list>
                     @for(title of productName | async;track $index) {
-                        <li class="title" (click)="displayProduct(title)" > {{title}} </li>
+                        <li (click)="displayProduct(title)" >
+                            <div class="title">
+                                {{title}} 
+                            </div>
+                        </li>
                     }
                 </ul>
             </div>
