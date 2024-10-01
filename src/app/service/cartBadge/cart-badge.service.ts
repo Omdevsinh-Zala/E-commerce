@@ -11,7 +11,9 @@ export class CartBadgeService {
 
   service = inject(UserService)
   constructor() {
-    this.service.setUser();
+    if(this.service.access) {
+      this.service.setUser();
+    }
     this.service.user$.subscribe({
       next:(user) => {
         this.user = user

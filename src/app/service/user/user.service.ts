@@ -23,13 +23,16 @@ export class UserService {
   }
 
   login(data) {
-    const promise = signInWithEmailAndPassword(this.fireBaseAuth, data.email, data.password).then(() => localStorage.setItem('Access', 'true'));
+    const promise = signInWithEmailAndPassword(this.fireBaseAuth, data.email, data.password).then(() => {
+      localStorage.setItem('Access', 'true') 
+      this.setUser()
+    });
     return from(promise);
   }
 
   logoutUser() {
    let promise = this.fireBaseAuth.signOut().then(() => {this.users.next(null)}).then(() => {
-    this.setUser();
+    localStorage.removeItem('Access')
    })
     return from(promise)
   }
@@ -37,6 +40,7 @@ export class UserService {
   setUser() {
     this.user.subscribe({
       next: (data) => {
+        console.log('Hello')
         if (data) {
           this.users.next(data.displayName);
         } else {
