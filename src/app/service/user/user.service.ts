@@ -40,7 +40,6 @@ export class UserService {
   setUser() {
     this.user.subscribe({
       next: (data) => {
-        console.log('Hello')
         if (data) {
           this.users.next(data.displayName);
         } else {
