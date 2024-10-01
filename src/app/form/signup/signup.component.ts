@@ -55,7 +55,7 @@ export class SignupComponent implements AfterViewInit {
         this.successMessage = 'Sign-up Successfully';
         clearTimeout(this.successTimer);
         this.successTimer = setTimeout(() => {
-          this.router.navigate(['/login'])
+          this.router.navigateByUrl('login')
           this.successMessage = '';
         },1000)
         let postUser:UserProfile = {

@@ -14,6 +14,8 @@ export class AppComponent {
   auth = inject(UserService);
   url = inject(PreviousUrlService);
   constructor() {
-    this.auth.setUser();
+    if(this.auth.access) {
+      this.auth.setUser();
+    }
   }
 }

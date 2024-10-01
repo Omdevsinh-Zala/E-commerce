@@ -13,6 +13,7 @@ export class UserService {
   user = user(this.fireBaseAuth);
   private users = new ReplaySubject(1);
   user$ = this.users.asObservable();
+  access = localStorage.getItem('Access')
 
   register(data) {
     const promise = createUserWithEmailAndPassword(this.fireBaseAuth, data.email, data.password)
@@ -22,7 +23,7 @@ export class UserService {
   }
 
   login(data) {
-    const promise = signInWithEmailAndPassword(this.fireBaseAuth, data.email, data.password);
+    const promise = signInWithEmailAndPassword(this.fireBaseAuth, data.email, data.password).then(() => localStorage.setItem('Access', 'true'));
     return from(promise);
   }
 
