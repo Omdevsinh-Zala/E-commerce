@@ -1,9 +1,9 @@
 <div class="card" (click)="emmit(data().id)">
     <div class="card-image-wrap">
-        <img [src]="data().thumbnail" />
+        <img class="product-thumbnail" [src]="data().thumbnail" />
     </div>
     <div class="card-header-wrap">
-        <h2 class="card-title">{{data().title}}</h2>
+        <h2 class="card-inner-title">{{data().title}}</h2>
     </div>
     <div class="price-wrap">
         <h3 class="price">{{((data().price) - (data().price * (data().discountPercentage/100))) | number:'1.1-2'}}$</h3>

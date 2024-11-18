@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { AfterViewInit, Component, input, output } from '@angular/core';
 import { Products } from '../../service/product/products';
 
 @Component({
@@ -9,7 +9,6 @@ import { Products } from '../../service/product/products';
 export class SmallCardsComponent {
   data = input<Products>()
   signal = output<string>();
-
   emmit(id: string) {
     this.signal.emit(id);
     setTimeout(() => {
