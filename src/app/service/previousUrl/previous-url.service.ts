@@ -31,7 +31,7 @@ export class PreviousUrlService {
   public queryParams!: Params;
   
   public getPreviour() {
-    let wholeUrl = this.getPreviousUrl();
+    let wholeUrl = this.getPreviousUrl() || '';
     if (wholeUrl.includes('?')) {
       this.previousPage = wholeUrl.split('?')[0];
       let params = wholeUrl.split('?')[1];

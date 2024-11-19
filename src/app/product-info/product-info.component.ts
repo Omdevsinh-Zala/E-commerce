@@ -1,6 +1,13 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Swiper } from 'swiper/bundle'
+import { Swiper } from 'swiper/bundle';
 import { ProductsService } from '../service/product/products.service';
 import { Products } from '../service/product/products';
 import { filter, from, toArray } from 'rxjs';
@@ -12,18 +19,21 @@ import { CartBadgeService } from '../service/cartBadge/cart-badge.service';
 @Component({
   selector: 'app-product-info',
   templateUrl: './product-info.component.html',
-  styleUrl: './product-info.component.scss'
+  styleUrl: './product-info.component.scss',
 })
 export class ProductInfoComponent implements OnInit, AfterViewInit {
   @ViewChild('main') first!: ElementRef;
   @ViewChild('spin') spin!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private api: ProductsService, private url: PreviousUrlService,
-    private router:Router
-  ) { }
+  constructor(
+    private route: ActivatedRoute,
+    private api: ProductsService,
+    private url: PreviousUrlService,
+    private router: Router
+  ) {}
 
-  productData!: Products
-  images: string[] = []
+  productData!: Products;
+  images: string[] = [];
   ratings: number = 0;
   productId: string = '0';
   allProducts: Products[] = [];
@@ -32,17 +42,17 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
     this.api.getAllProducts().subscribe({
       next: (data) => {
         this.allProducts.push(...data);
-      }
-    })
+      },
+    });
     this.getProduct();
-    console.warn = () => { };
+    console.warn = () => {};
     this.url.getPreviour();
     this.previousPage = this.url.previousPage;
     this.queryParams = this.url.queryParams;
   }
 
   ngAfterViewInit(): void {
-    setTimeout(this.swiperInit, 800)
+    setTimeout(this.swiperInit, 800);
     setTimeout(() => {
       this.first.nativeElement.style.display = 'block';
       this.spin.nativeElement.style.display = 'none';
@@ -56,12 +66,12 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       loop: true,
       autoplay: true,
       speed: 1000,
-      effect: "coverflow",
+      effect: 'coverflow',
       coverflowEffect: {
         depth: 30,
         rotate: 200,
         modifier: 1,
-        stretch: 10
+        stretch: 10,
       },
 
       // If we need pagination
@@ -88,7 +98,6 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       autoplay: true,
       speed: 1000,
 
-
       // If we need pagination
       pagination: {
         el: '.swiper-pagination',
@@ -103,7 +112,7 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       // And if we need scrollbar
       scrollbar: {
         el: '.swiper-scrollbar',
-      }
+      },
     });
   }
 
@@ -115,7 +124,7 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       },
       error: (err) => {
         console.error(err);
-      }
+      },
     });
   }
 
@@ -124,46 +133,53 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       next: (data) => {
         if (data) {
           this.productData = data;
-          this.ratings = data.rating
+          this.ratings = data.rating;
         }
       },
       error: (err) => console.error(err),
       complete: () => {
         this.images = this.productData.images;
-      }
-    })
+      },
+    });
   }
 
   //For table
   show: boolean = false;
-  filteredProducts: Products[] = []
+  filteredProducts: Products[] = [];
   column: string[] = ['Data'];
   @ViewChild(MatPaginator) paginaotr!: MatPaginator;
   dataSource = new MatTableDataSource<Products>(this.filteredProducts);
 
   getRelatedProducts(tag: string) {
-    from(this.allProducts).pipe(
-      filter((products) => products.tags.includes(tag)),
-      toArray()
-    ).subscribe({
-      next: (data) => {
-        let index = data.findIndex((product) => product.id == this.productData.id);
-        if (index != -1) {
-          data.splice(index, 1)
-        }
-        this.filteredProducts = data;
-        this.dataSource = new MatTableDataSource<Products>(this.filteredProducts);
-      }, error: (err) => {
-        console.error(err)
-      },
-      complete: () => {
-        this.show = true;
-        setTimeout(() => {
-          this.dataSource.paginator = this.paginaotr;
-          window.scrollTo(0, document.body.scrollHeight)
-        }, 500)
-      }
-    })
+    from(this.allProducts)
+      .pipe(
+        filter((products) => products.tags.includes(tag)),
+        toArray()
+      )
+      .subscribe({
+        next: (data) => {
+          let index = data.findIndex(
+            (product) => product.id == this.productData.id
+          );
+          if (index != -1) {
+            data.splice(index, 1);
+          }
+          this.filteredProducts = data;
+          this.dataSource = new MatTableDataSource<Products>(
+            this.filteredProducts
+          );
+        },
+        error: (err) => {
+          console.error(err);
+        },
+        complete: () => {
+          this.show = true;
+          setTimeout(() => {
+            this.dataSource.paginator = this.paginaotr;
+            window.scrollTo(0, document.body.scrollHeight);
+          }, 500);
+        },
+      });
   }
 
   //For add to cart functionality

@@ -493,6 +493,8 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    if(this.subscription) {
+      this.subscription.unsubscribe()
+    }
   }
 }

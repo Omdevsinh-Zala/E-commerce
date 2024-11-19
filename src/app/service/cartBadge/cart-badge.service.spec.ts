@@ -16,7 +16,6 @@ describe('CartBadgeService', () => {
   let service: CartBadgeService;
 
   beforeEach(() => {
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
     TestBed.configureTestingModule({
       providers:[
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

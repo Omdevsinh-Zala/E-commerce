@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DescendingComponent } from './descending.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('DescendingComponent', () => {
   let component: DescendingComponent;
@@ -8,7 +10,11 @@ describe('DescendingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DescendingComponent]
+      declarations: [DescendingComponent],
+      imports:[
+        MatRadioModule,
+        ReactiveFormsModule
+      ]
     })
     .compileComponents();
 

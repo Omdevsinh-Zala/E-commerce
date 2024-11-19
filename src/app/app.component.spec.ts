@@ -14,7 +14,6 @@ import { environment } from '../environments/environment.development';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
-    await TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
     await TestBed.configureTestingModule({
         providers:[
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

@@ -8,7 +8,6 @@ describe('PreviousUrlService', () => {
   let service: PreviousUrlService;
 
   beforeEach(() => {
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
     TestBed.configureTestingModule({});
     service = TestBed.inject(PreviousUrlService);
   });

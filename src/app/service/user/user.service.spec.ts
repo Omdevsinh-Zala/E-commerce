@@ -16,7 +16,6 @@ describe('UserService', () => {
   let service: UserService;
 
   beforeEach(() => {
-    TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting())
     TestBed.configureTestingModule({
       providers:[
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

@@ -55,13 +55,6 @@ describe('SmallCardsComponent', () => {
     quantity: 2,
   });
 
-  beforeAll(() => {
-    TestBed.initTestEnvironment(
-      BrowserDynamicTestingModule,
-      platformBrowserDynamicTesting()
-    );
-  })
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SmallCardsComponent],

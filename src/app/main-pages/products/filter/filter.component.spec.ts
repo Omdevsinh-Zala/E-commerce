@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterComponent } from './filter.component';
+import { provideHttpClient } from '@angular/common/http';
+import { MatRadioGroup, MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('FilterComponent', () => {
   let component: FilterComponent;
@@ -8,7 +11,15 @@ describe('FilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FilterComponent]
+      providers:[
+        provideHttpClient()
+      ],
+      declarations: [FilterComponent],
+      imports:[
+        MatRadioModule,
+        MatRadioGroup,
+        ReactiveFormsModule
+      ]
     })
     .compileComponents();
 
