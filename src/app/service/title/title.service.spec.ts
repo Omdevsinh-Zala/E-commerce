@@ -25,11 +25,4 @@ describe('TitleService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should set title', async() => {
-    const router = { paramMap:{ id: 1 } } as unknown as ActivatedRouteSnapshot;
-    // const title$ = service.resolve(router);
-    // const promise = firstValueFrom(title$);
-    // const req = httpTesting.expectOne('https://dummyjson.com/products?limit=0')
-  })
 });

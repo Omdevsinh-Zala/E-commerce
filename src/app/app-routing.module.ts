@@ -52,7 +52,7 @@ const routes: Routes = [
       {
         path: 'products/:id',
         component: ProductInfoComponent,
-        title: TitleService
+        // title: TitleService
       }
     ]
   }

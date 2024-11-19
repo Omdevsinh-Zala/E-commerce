@@ -15,6 +15,7 @@ import { PreviousUrlService } from '../service/previousUrl/previous-url.service'
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { CartBadgeService } from '../service/cartBadge/cart-badge.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-info',
@@ -29,7 +30,8 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private api: ProductsService,
     private url: PreviousUrlService,
-    private router: Router
+    private router: Router,
+    private title:Title
   ) {}
 
   productData!: Products;
@@ -43,8 +45,10 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.allProducts.push(...data);
       },
+      complete:() => {
+        this.getProduct();
+      }
     });
-    this.getProduct();
     console.warn = () => {};
     this.url.getPreviour();
     this.previousPage = this.url.previousPage;
@@ -129,18 +133,11 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
   }
 
   getProducts(id: string) {
-    this.api.getProduct(id).subscribe({
-      next: (data) => {
-        if (data) {
-          this.productData = data;
-          this.ratings = data.rating;
-        }
-      },
-      error: (err) => console.error(err),
-      complete: () => {
-        this.images = this.productData.images;
-      },
-    });
+    const product = this.allProducts.find((product) => product.id == id);
+    this.productData = product
+    this.ratings = product.rating
+    this.images = product.images
+    this.title.setTitle(`Product | ${product.title}`);
   }
 
   //For table

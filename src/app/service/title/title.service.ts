@@ -8,13 +8,13 @@ import { map } from 'rxjs';
 })
 export class TitleService {
 
-  constructor(private product:ProductsService) { }
-  resolve(router:ActivatedRouteSnapshot) {
-    const id = router.paramMap.get('id');
-    return this.product.getProduct(id).pipe(
-      map((data) => {
-        return `Products | ${data.title}`
-      })
-    )
-  }
+  constructor() { }
+  // resolve(router:ActivatedRouteSnapshot) {
+  //   const id = router.paramMap.get('id');
+  //   return this.product.getProduct(id).pipe(
+  //     map((data) => {
+  //       return `Products | ${data.title}`
+  //     })
+  //   )
+  // }
 }
