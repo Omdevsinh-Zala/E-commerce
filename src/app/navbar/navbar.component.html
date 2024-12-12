@@ -9,7 +9,7 @@
                     <li class="nav-links"><a routerLink="home" routerLinkActive="current" class="nav-link">Home</a></li>
                     <li class="nav-links"><a routerLink="products" routerLinkActive="current" class="nav-link">Products</a></li>
                 </ul>
-                <div class="cart-wrap" [matBadge]="badgeCount">
+                <div class="cart-wrap" [matBadge]="badgeCount | async">
                     <a class="nav-link"
                     title="Cart"
                     routerLink="cart"

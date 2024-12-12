@@ -21,11 +21,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     console.error = () => {};
-    this.count.getCount().subscribe({
-      next: count => {
-        this.badgeCount = count;
-      }
-    });
   }
 
   @ViewChild('hideNav') nav!:ElementRef;
@@ -48,5 +43,5 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  badgeCount:number = 0;
+  badgeCount:Observable<number> = this.count.getCount();
 }
