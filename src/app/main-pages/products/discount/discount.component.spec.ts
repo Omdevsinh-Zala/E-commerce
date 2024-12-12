@@ -14,20 +14,14 @@ describe('DiscountComponent', () => {
     queryParams: of({ sort: 'asc' }),
     snapshot: { paramMap: { get: (key: string) => '1' } },
   };
-  let router: ActivatedRoute
+  let router: ActivatedRoute;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DiscountComponent],
-      imports:[
-        MatRadioModule,
-        ReactiveFormsModule
-      ],
-      providers:[
-        { provide: ActivatedRoute, useValue: mockActivatedRoute },
-      ]
-    })
-    .compileComponents();
+      imports: [MatRadioModule, ReactiveFormsModule],
+      providers: [{ provide: ActivatedRoute, useValue: mockActivatedRoute }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DiscountComponent);
     router = TestBed.inject(ActivatedRoute);

@@ -1,42 +1,42 @@
 <div class="container">
-    <div class="search-wrap">
-        <!-- <app-search /> -->
+  <div class="search-wrap">
+    <!-- <app-search /> -->
+  </div>
+  @if(ProductData.length > 0) {
+  <div class="example-container mat-elevation-z8" tabindex="0">
+    <div class="total-wrap">
+      <div class="total-text">Total</div>
+      <div class="info-wrap">
+        <div class="total-num">{{ totalPrice | number : "1.1-2" }}$</div>
+        <div class="btn-wrap">
+          <button class="btn buy-btn" (click)="buyNow()">Buy Now</button>
+        </div>
+      </div>
     </div>
-    <!-- <div class="link-wrap">
-        <a class="nav-link" [routerLink]="previousPage" [queryParams]="queryParams" queryParamsHandling="merge" >
-            <mat-icon>arrow_back</mat-icon> Go Back
-        </a>
-    </div> -->
-    @if(ProductData.length > 0) {
-        <div class="example-container mat-elevation-z8" tabindex="0">
-            <div class="total-wrap">
-                <div class="total-text">
-                    Total
-                </div>
-                <div class="info-wrap">
-                    <div class="total-num">
-                        {{totalPrice | number:'1.1-2'}}$
-                    </div>
-                    <div class="btn-wrap">
-                        <button class="btn buy-btn" (click)="buyNow()">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-            <table class="table" mat-table [dataSource]="dataSource">
-                <ng-container matColumnDef="Cart">
-                    <!-- <th mat-header-cell *matHeaderCellDef>Cart</th> -->
-                    <td class="product-data" mat-cell *matCellDef="let data"><app-cart-card [products]="data"
-                            (signal)="onCatch($event)" (total)="runTotal($event)" /></td>
-                </ng-container>
-                <!-- <tr class="table-header" mat-header-row *matHeaderRowDef="columns; sticky:true"></tr> -->
-                <tr class="data-row" mat-row *matRowDef="let row; columns: columns;"></tr>
-            </table>
-        </div>
-        <mat-paginator class="paginator" [pageSizeOptions]="[8]" aria-label="Select page of periodic elements">
-        </mat-paginator>
-    } @else {
-        <div class="empty-wrap">
-            <h2 class="empty">No items in Cart at this moment ¯\(°_o)/¯</h2>
-        </div>
-    }
+    <table class="table" mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="Cart">
+        <!-- <th mat-header-cell *matHeaderCellDef>Cart</th> -->
+        <td class="product-data" mat-cell *matCellDef="let data">
+          <app-cart-card
+            [products]="data"
+            (signal)="onCatch($event)"
+            (total)="runTotal($event)"
+          />
+        </td>
+      </ng-container>
+      <!-- <tr class="table-header" mat-header-row *matHeaderRowDef="columns; sticky:true"></tr> -->
+      <tr class="data-row" mat-row *matRowDef="let row; columns: columns"></tr>
+    </table>
+  </div>
+  <mat-paginator
+    class="paginator"
+    [pageSizeOptions]="[8]"
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+  } @else {
+  <div class="empty-wrap">
+    <h2 class="empty">No items in Cart at this moment ¯\(°_o)/¯</h2>
+  </div>
+  }
 </div>

@@ -20,17 +20,14 @@ describe('NavbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NavbarComponent],
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideDatabase(() => getDatabase())
+        provideDatabase(() => getDatabase()),
       ],
-      imports:[
-        MatIconModule
-      ]
-    })
-    .compileComponents();
+      imports: [MatIconModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;

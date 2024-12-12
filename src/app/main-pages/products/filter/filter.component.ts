@@ -1,4 +1,11 @@
-import { Component, input, OnChanges, OnInit, output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  input,
+  OnChanges,
+  OnInit,
+  output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { ProductsService } from '../../../service/product/products.service';
 import { FormControl } from '@angular/forms';
@@ -7,12 +14,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrl: './filter.component.scss'
+  styleUrl: './filter.component.scss',
 })
 export class FilterComponent implements OnInit, OnChanges {
-  categories:string[] = []
+  categories: string[] = [];
 
-  constructor(private api:ProductsService, private router:Router) {}
+  constructor(private api: ProductsService, private router: Router) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -30,19 +37,22 @@ export class FilterComponent implements OnInit, OnChanges {
     });
   }
 
-  changedCategory = output<string>()
-  temprarySignal = output<boolean>()
+  changedCategory = output<string>();
+  temprarySignal = output<boolean>();
 
   categoryForm: FormControl = new FormControl();
 
-  changeCategory(e:MatRadioChange) {
-    this.temprarySignal.emit(false)
+  changeCategory(e: MatRadioChange) {
+    this.temprarySignal.emit(false);
   }
 
   recentValue = input<string[]>();
 
   clearButton() {
     this.categoryForm.setValue(null);
-    this.router.navigate([], { queryParams: { Category: null }, queryParamsHandling: 'merge' });
+    this.router.navigate([], {
+      queryParams: { Category: null },
+      queryParamsHandling: 'merge',
+    });
   }
 }

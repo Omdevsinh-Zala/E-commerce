@@ -26,7 +26,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from '../../search/search.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  NoopAnimationsModule,
+} from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 
@@ -80,7 +83,7 @@ describe('ProductsComponent', () => {
     category: '',
     description: '',
     quantity: 2,
-  }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -91,9 +94,9 @@ describe('ProductsComponent', () => {
         DiscountComponent,
         AscendingComponent,
         DescendingComponent,
-        SearchComponent
+        SearchComponent,
       ],
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
@@ -102,7 +105,7 @@ describe('ProductsComponent', () => {
         provideHttpClientTesting(),
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ],
-      imports:[
+      imports: [
         MatRadioGroup,
         MatRadioButton,
         ReactiveFormsModule,
@@ -111,16 +114,15 @@ describe('ProductsComponent', () => {
         MatIconModule,
         MatPaginatorModule,
         MatTableModule,
-        NoopAnimationsModule
-      ]
-    })
-    .compileComponents();
+        NoopAnimationsModule,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductsComponent);
     route = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
   });
-  
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

@@ -1,21 +1,40 @@
-<div class="card" routerLink="/products/{{products()?.id}}">
-    <div class="card-image-wrap">
-        <img [src]="products()?.thumbnail" />
+<div class="card" routerLink="/products/{{ products()?.id }}">
+  <div class="card-image-wrap">
+    <img [src]="products()?.thumbnail" />
+  </div>
+  <div class="card-header-wrap">
+    <h2 class="card-title">{{ products()?.title }}</h2>
+  </div>
+  <div class="quantity-wrap">
+    <button
+      class="btn quantity-btn"
+      (click)="decreaseQuantity(products().id, $event)"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+    <p class="quantity">{{ products().quantity }}</p>
+    <button
+      (click)="increaseQuantity(products().id, $event)"
+      class="btn quantity-btn"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div class="price-wrap">
+    <h3 class="price">
+      {{
+        (products().price -
+          products().price * (products().discountPercentage / 100)) *
+          products().quantity | number : "1.1-2"
+      }}$
+    </h3>
+    <div class="remove">
+      <button
+        class="btn remove-btn"
+        (click)="removeProduct(products(), $event)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
-    <div class="card-header-wrap">
-        <h2 class="card-title">{{products()?.title}}</h2>
-    </div>
-    <div class="quantity-wrap">
-        <button class="btn quantity-btn" (click)="decreaseQuantity(products().id, $event)"> <mat-icon>remove</mat-icon> </button>
-        <p class="quantity">{{products().quantity}}</p>
-        <button (click)="increaseQuantity(products().id, $event)" class="btn quantity-btn"> <mat-icon>add</mat-icon> </button>
-    </div>
-    <div class="price-wrap">
-        <h3 class="price">{{((products().price) - (products().price * (products().discountPercentage/100))) * (products().quantity) | number:'1.1-2'}}$</h3>
-        <div class="remove">
-            <button class="btn remove-btn" (click)="removeProduct(products(), $event)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </div>
+  </div>
 </div>

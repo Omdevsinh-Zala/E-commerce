@@ -1,78 +1,78 @@
 .cards-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 
-    .card {
-        width: 25%;
-        padding: 10px;
-    }
+  .card {
+    width: 25%;
+    padding: 10px;
+  }
 }
 .filter-wrap {
-    margin: 0 0 20px 0;
-    position: fixed;
-    left: 15px;
-    top: 79px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  margin: 0 0 20px 0;
+  position: fixed;
+  left: 15px;
+  top: 79px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
-    @media(max-width: 1800px) {
-      flex-direction: row;
-      position: absolute;
-      top: -59px;
-      left: 0;
-      right: 0;
-      z-index: 3;
-      @media (max-width: 900px) {
-        top: -115px;
-      }
-      @media (max-width: 637px) {
-        top: -228px;
-      }
+  @media (max-width: 1800px) {
+    flex-direction: row;
+    position: absolute;
+    top: -59px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    @media (max-width: 900px) {
+      top: -115px;
     }
-    @media(max-width: 900px) {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    @media (max-width: 637px) {
+      top: -228px;
     }
-    @media(max-width: 550px) {
-      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    }
+  }
+  @media (max-width: 900px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  @media (max-width: 550px) {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
 }
 .spinner {
-    position: relative;
-    margin: 25% auto;
-    @media (max-width: 900px) {
-      margin: 185% -30%;
-    }
-    @media (max-width: 550px) {
-      margin: 250% -30%;
-    }
+  position: relative;
+  margin: 25% auto;
+  @media (max-width: 900px) {
+    margin: 185% -30%;
+  }
+  @media (max-width: 550px) {
+    margin: 250% -30%;
+  }
 }
 .more-btn-wrap {
-    width: 100%;
-    text-align: center;
-    margin: 20px 0;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
 
-    .more-btn {
-        font-size: 20px;
-        font-weight: 500;
-        padding: 20px 75px;
-        border: 1px solid lightcoral;
-        color: lightcoral;
-        transition: all 0.2s linear;
+  .more-btn {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 20px 75px;
+    border: 1px solid lightcoral;
+    color: lightcoral;
+    transition: all 0.2s linear;
 
-        &:hover {
-            background-color: lightcoral;
-            color: white;
-            transition: all 0.2s linear;
-        }
-
-        &:disabled {
-            cursor: not-allowed;
-            opacity: 0.3;
-        }
+    &:hover {
+      background-color: lightcoral;
+      color: white;
+      transition: all 0.2s linear;
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+  }
 }
 
 .content-container {
@@ -105,11 +105,11 @@ table {
   background-color: white;
 }
 
-::ng-deep tbody{
+::ng-deep tbody {
   display: flex;
-  flex-wrap: wrap ;
-  width: 100% ;
-  height: 100% ;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
 }
 
 .data-row {
@@ -117,13 +117,13 @@ table {
   height: 100%;
   margin: 0;
   padding: 0;
-  @media(max-width: 1200px) {
+  @media (max-width: 1200px) {
     width: 33.33%;
   }
-  @media(max-width: 900px) {
+  @media (max-width: 900px) {
     width: 50%;
   }
-  @media(max-width: 550px) {
+  @media (max-width: 550px) {
     width: 100%;
   }
 }
@@ -144,7 +144,7 @@ table {
   display: block;
   border: none;
   box-shadow: none;
-  @media(max-width: 900px){
+  @media (max-width: 900px) {
     padding: 18px;
   }
 }

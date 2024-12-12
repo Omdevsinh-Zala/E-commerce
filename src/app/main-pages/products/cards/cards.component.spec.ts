@@ -12,7 +12,12 @@ import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../../../environments/environment.development';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, InputSignal, NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  InputSignal,
+  NO_ERRORS_SCHEMA,
+  signal,
+} from '@angular/core';
 import { Products } from '../../../service/product/products';
 
 describe('CardsComponent', () => {
@@ -63,22 +68,16 @@ describe('CardsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideDatabase(() => getDatabase())
+        provideDatabase(() => getDatabase()),
       ],
-      imports:[
-        MatIconModule,
-        CommonModule,
-      ],
-      schemas:[
-        NO_ERRORS_SCHEMA
-      ],
-      declarations: [CardsComponent]
-    })
-    .compileComponents();
+      imports: [MatIconModule, CommonModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [CardsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CardsComponent);
     component = fixture.componentInstance;

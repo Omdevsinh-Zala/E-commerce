@@ -1,48 +1,48 @@
 <div class="info-wrap">
-    <div class="content-wrap">
-        <div class="search-wrap">
-            <input type="search" (input)="onInput()" (blur)="onBlur()" class="search" #search  /><span class="search-image" #span><mat-icon>search</mat-icon></span>
-            <div class="suggetions-wrap" #wrap>
-                <ul class="title-list" #list>
-                    @for(title of productName | async;track $index) {
-                        <li (click)="displayProduct(title)" >
-                            <div class="title">
-                                {{title}} 
-                            </div>
-                        </li>
-                    }
-                </ul>
+  <div class="content-wrap">
+    <div class="search-wrap">
+      <input
+        type="search"
+        (input)="onInput()"
+        (blur)="onBlur()"
+        class="search"
+        #search
+      /><span class="search-image" #span><mat-icon>search</mat-icon></span>
+      <div class="suggetions-wrap" #wrap>
+        <ul class="title-list" #list>
+          @for(title of productName | async;track $index) {
+          <li (click)="displayProduct(title)">
+            <div class="title">
+              {{ title }}
             </div>
-        </div>
-        <div class="account-wrap">
-            <div class="account-info-wrap" (click)="toggleAccount()">
-                <mat-icon>account_circle</mat-icon>
-                <h2 class="user-title"> {{user?user:'Guest'}} </h2>
-            </div>
-            <div [ngClass]="user?'extra-wrap':'extra-wrap small'" #expand>
-                @if (user) {
-                <button routerLink="/home" class="btn update-btn">
-                    <mat-icon>settings</mat-icon>
-                    <h3 class="account-title">
-                        Account overview
-                    </h3>
-                </button>
-                <hr>
-                <button class="btn logout-btn">
-                    <mat-icon>power_settings_new</mat-icon>
-                    <h3 class="account-title" (click)="logout()">
-                        Logout
-                    </h3>
-                </button>
-                } @else {
-                <button class="btn login-btn" (click)="login()">
-                    <mat-icon>power_settings_new</mat-icon>
-                    <h3 class="account-title">
-                        Login
-                    </h3>
-                </button>
-                }
-            </div>
-        </div>
+          </li>
+          }
+        </ul>
+      </div>
     </div>
+    <div class="account-wrap">
+      <div class="account-info-wrap" (click)="toggleAccount()">
+        <mat-icon>account_circle</mat-icon>
+        <h2 class="user-title">{{ user ? user : "Guest" }}</h2>
+      </div>
+      <div [ngClass]="user ? 'extra-wrap' : 'extra-wrap small'" #expand>
+        @if (user) {
+        <button routerLink="/home" class="btn update-btn">
+          <mat-icon>settings</mat-icon>
+          <h3 class="account-title">Account overview</h3>
+        </button>
+        <hr />
+        <button class="btn logout-btn">
+          <mat-icon>power_settings_new</mat-icon>
+          <h3 class="account-title" (click)="logout()">Logout</h3>
+        </button>
+        } @else {
+        <button class="btn login-btn" (click)="login()">
+          <mat-icon>power_settings_new</mat-icon>
+          <h3 class="account-title">Login</h3>
+        </button>
+        }
+      </div>
+    </div>
+  </div>
 </div>

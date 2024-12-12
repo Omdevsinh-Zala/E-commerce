@@ -18,18 +18,15 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideDatabase(() => getDatabase())
+        provideDatabase(() => getDatabase()),
       ],
-      imports:[
-        MatIconModule
-      ],
-      declarations: [SearchComponent]
-    })
-    .compileComponents();
+      imports: [MatIconModule],
+      declarations: [SearchComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;

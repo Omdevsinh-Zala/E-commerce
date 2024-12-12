@@ -20,11 +20,11 @@ import { UserService } from '../../service/user/user.service';
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let userService: UserService
+  let userService: UserService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[
+      providers: [
         provideHttpClient(),
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
@@ -32,15 +32,14 @@ describe('LoginComponent', () => {
         provideDatabase(() => getDatabase()),
       ],
       declarations: [LoginComponent],
-      imports:[
+      imports: [
         ReactiveFormsModule,
         MatLabel,
         MatFormFieldModule,
         MatInputModule,
-        BrowserAnimationsModule
-      ]
-    })
-    .compileComponents();
+        BrowserAnimationsModule,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
@@ -52,7 +51,5 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('shoul check if user is logged in', () => {
-    
-  })
+  it('shoul check if user is logged in', () => {});
 });

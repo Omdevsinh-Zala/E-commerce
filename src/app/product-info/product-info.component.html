@@ -1,176 +1,209 @@
 <div class="container">
-    <div class="content-container" #main>
-        @defer (on timer(800)) {
-        <!-- <div class="btn-wrap">
-            <a class="nav-link" [routerLink]="previousPage" [queryParams]="queryParams" queryParamsHandling="merge">
-                <mat-icon>arrow_back</mat-icon> Go Back
-            </a>
-        </div> -->
-        <div class="card">
-            <div class="content-wrap">
-                <div class="card-content-wrap">
-
-                    <div class="firstSwiper swiper">
-                        <div class="swiper-wrapper">
-                            @for(image of images;track image) {
-                            <div class="swiper-slide"><img class="image" [src]="image" /></div>
-                            }
-                        </div>
-                        <div class="swiper-pagination"></div>
-
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-
-                </div>
-                <div class="info-wrap">
-                    <div class="card-header-wrap">
-                        <div class="card-title">
-                            <h2>{{productData.title}}</h2>
-                        </div>
-                        <div class="card-text">
-                            <h3>{{productData.category}}</h3>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="description-wrap">
-                        {{productData.description}}
-                    </div>
-                    <div class="price-wrap">
-                        <div class="rating-wrap" #rating>
-                            Ratings: {{productData.rating}}
-                            @if(productData.rating == 5) {
-                            <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
-                            }@else if(productData.rating > 4 && productData.rating < 5) { <mat-icon>
-                                star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon>
-                                }@else if(productData.rating == 4) {
-                                <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon>
-                                }
-                                @else if(productData.rating > 3 && productData.rating < 4) { <mat-icon>
-                                    star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon>
-                                    }@else if(productData.rating == 3) { <mat-icon>
-                                        star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                    }
-                                    @else if(productData.rating > 2 && productData.rating < 3) { <mat-icon>
-                                        star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                        }@else if(productData.rating == 2) { <mat-icon>
-                                            star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                        }
-                                        @else if(productData.rating > 1 && productData.rating < 2) { <mat-icon>
-                                            star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                            } @else if( productData.rating == 1 ) {
-                                            <mat-icon>
-                                                star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                            }
-
-                        </div>
-                        <div class="tags-wrap">
-                            Tags:
-                            @for(tag of productData.tags;track tag) {
-                            <div class="tag">{{tag}}</div>
-                            }
-                        </div>
-                        <div class="price-second-wrap">
-                            Price: {{(productData.price) - (productData.price * (productData.discountPercentage/100)) |
-                            number:'1.1-2'}}$
-                            <div class="discount-percent-wrap">
-                                -{{productData.discountPercentage}}%
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="button-wrap">
-                        <button class="btn cart-btn" title="add to cart" (click)="addToCart(productData,$event)">Add To
-                            Cart<mat-icon>add_shopping_cart</mat-icon></button>
-                    </div>
-                </div>
+  <div class="content-container" #main>
+    @defer (on timer(800)) {
+    <div class="card">
+      <div class="content-wrap">
+        <div class="card-content-wrap">
+          <div class="firstSwiper swiper">
+            <div class="swiper-wrapper">
+              @for(image of images;track image) {
+              <div class="swiper-slide">
+                <img class="image" [src]="image" />
+              </div>
+              }
             </div>
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
-        <div class="reviews-wrap">
-            <div class="secondSwiper swiper">
-                <div class="swiper-wrapper">
-                    @for(review of productData.reviews;track review) {
-                    <div class="swiper-slide">
-                        <div class="review-card">
-                            <div class="review-header-wrap">
-                                <h2 class="review-title">{{review.reviewerName}}</h2>
-                                <h3 class="review-text">{{review.reviewerEmail}}</h3>
-                            </div>
-                            <div class="review-content-wrap">
-                                {{review.comment}}
-                            </div>
-                            <div class="more-content-wrap">
-                                <div class="rating-wrap">
-                                    {{review.rating}}
-                                    @if(review.rating == 5) {
-                                    <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon>
-                                    }@else if(review.rating > 4 && review.rating < 5) { <mat-icon>
-                                        star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon>
-                                        }@else if(review.rating == 4) {
-                                        <mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon>
-                                        }
-                                        @else if(review.rating > 3 && review.rating < 4) { <mat-icon>
-                                            star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon>
-                                            }@else if(review.rating == 3) { <mat-icon>
-                                                star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                            }
-                                            @else if(review.rating > 2 && review.rating < 3) { <mat-icon>
-                                                star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                                }@else if(review.rating == 2) { <mat-icon>
-                                                    star</mat-icon><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                                }
-                                                @else if(review.rating > 1 && review.rating < 2) { <mat-icon>
-                                                    star</mat-icon><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                                    } @else if( review.rating == 1 ) {
-                                                    <mat-icon>
-                                                        star</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
-                                                    }
-                                </div>
-                                <div class="date-wrap">
-                                    {{review.date | date}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    }
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
+        <div class="info-wrap">
+          <div class="card-header-wrap">
+            <div class="card-title">
+              <h2>{{ productData.title }}</h2>
             </div>
-        </div>
-        <div class="related-wrap">
-            <div class="realted-title">
-                <h2 class="related-tags">Products Related to:
-                    @for(tag of productData.tags; track tag) {
-                    <button (click)="getRelatedProducts(tag)" class="tag">{{tag.slice(0,1).toUpperCase() +
-                        tag.slice(1)}}</button>
-                    }
-                </h2>
-                <div class="table-wrap">
-                    @if(show) {
-                        @if(filteredProducts.length != 0) {
-                            <table class="table" mat-table [dataSource]="dataSource">
-                                <ng-container matColumnDef="Data">
-                                    <td class="product-data" mat-cell *matCellDef="let data"> <app-small-cards [data]="data" (signal)="newProduct($event)" /> </td>
-                                </ng-container>
-                                <tr class="data-row" mat-row *matRowDef="let row; columns: column;"></tr>
-                            </table>
-                            <mat-paginator class="paginator" [pageSizeOptions]="[4]"></mat-paginator>
-                        } @else {
-                        <div class="empty">
-                            <h2 class="empty-text">No data at this moment</h2>
-                        </div>
-                        }
-                    }
-                </div>
+            <div class="card-text">
+              <h3>{{ productData.category }}</h3>
             </div>
+          </div>
+          <hr />
+          <div class="description-wrap">
+            {{ productData.description }}
+          </div>
+          <div class="price-wrap">
+            <div class="rating-wrap" #rating>
+              Ratings: {{ productData.rating }}
+              @if(productData.rating == 5) {
+              <mat-icon>star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star</mat-icon> }@else if(productData.rating > 4 &&
+              productData.rating < 5) { <mat-icon> star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon>
+              }@else if(productData.rating == 4) {
+              <mat-icon>star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star_border</mat-icon> } @else if(productData.rating >
+              3 && productData.rating < 4) { <mat-icon> star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star_half</mat-icon
+              ><mat-icon>star_border</mat-icon> }@else if(productData.rating ==
+              3) { <mat-icon> star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon
+              ><mat-icon>star_border</mat-icon> } @else if(productData.rating >
+              2 && productData.rating < 3) { <mat-icon> star</mat-icon
+              ><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon
+              ><mat-icon>star_border</mat-icon
+              ><mat-icon>star_border</mat-icon> }@else if(productData.rating ==
+              2) { <mat-icon> star</mat-icon><mat-icon>star</mat-icon
+              ><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon
+              ><mat-icon>star_border</mat-icon> } @else if(productData.rating >
+              1 && productData.rating < 2) { <mat-icon> star</mat-icon
+              ><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon
+              ><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon>
+              } @else if( productData.rating == 1 ) {
+              <mat-icon> star</mat-icon><mat-icon>star_border</mat-icon
+              ><mat-icon>star_border</mat-icon><mat-icon>star_border</mat-icon
+              ><mat-icon>star_border</mat-icon>
+              }
+            </div>
+            <div class="tags-wrap">
+              Tags: @for(tag of productData.tags;track tag) {
+              <div class="tag">{{ tag }}</div>
+              }
+            </div>
+            <div class="price-second-wrap">
+              Price:
+              {{
+                productData.price -
+                  productData.price * (productData.discountPercentage / 100)
+                  | number : "1.1-2"
+              }}$
+              <div class="discount-percent-wrap">
+                -{{ productData.discountPercentage }}%
+              </div>
+            </div>
+          </div>
+
+          <div class="button-wrap">
+            <button
+              class="btn cart-btn"
+              title="add to cart"
+              (click)="addToCart(productData, $event)"
+            >
+              Add To Cart<mat-icon>add_shopping_cart</mat-icon>
+            </button>
+          </div>
         </div>
-        } @loading {
-        <div>Waiting...</div>
-        }
+      </div>
     </div>
-    <div class="spinner-wrap" #spin>
-        <mat-spinner class="spinner"></mat-spinner>
+    <div class="reviews-wrap">
+      <div class="secondSwiper swiper">
+        <div class="swiper-wrapper">
+          @for(review of productData.reviews;track review) {
+          <div class="swiper-slide">
+            <div class="review-card">
+              <div class="review-header-wrap">
+                <h2 class="review-title">{{ review.reviewerName }}</h2>
+                <h3 class="review-text">{{ review.reviewerEmail }}</h3>
+              </div>
+              <div class="review-content-wrap">
+                {{ review.comment }}
+              </div>
+              <div class="more-content-wrap">
+                <div class="rating-wrap">
+                  {{ review.rating }}
+                  @if(review.rating == 5) {
+                  <mat-icon>star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star</mat-icon> }@else if(review.rating > 4 &&
+                  review.rating < 5) { <mat-icon> star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon>
+                  }@else if(review.rating == 4) {
+                  <mat-icon>star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star_border</mat-icon> } @else if(review.rating > 3
+                  && review.rating < 4) { <mat-icon> star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star_half</mat-icon
+                  ><mat-icon>star_border</mat-icon> }@else if(review.rating ==
+                  3) { <mat-icon> star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon> } @else if(review.rating > 2
+                  && review.rating < 3) { <mat-icon> star</mat-icon
+                  ><mat-icon>star</mat-icon><mat-icon>star_half</mat-icon
+                  ><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon> }@else if(review.rating ==
+                  2) { <mat-icon> star</mat-icon><mat-icon>star</mat-icon
+                  ><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon> } @else if(review.rating > 1
+                  && review.rating < 2) { <mat-icon> star</mat-icon
+                  ><mat-icon>star_half</mat-icon><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon>
+                  } @else if( review.rating == 1 ) {
+                  <mat-icon> star</mat-icon><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon
+                  ><mat-icon>star_border</mat-icon>
+                  }
+                </div>
+                <div class="date-wrap">
+                  {{ review.date | date }}
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
+    <div class="related-wrap">
+      <div class="realted-title">
+        <h2 class="related-tags">
+          Products Related to: @for(tag of productData.tags; track tag) {
+          <button (click)="getRelatedProducts(tag)" class="tag">
+            {{ tag.slice(0, 1).toUpperCase() + tag.slice(1) }}
+          </button>
+          }
+        </h2>
+        <div class="table-wrap">
+          @if(show) { @if(filteredProducts.length != 0) {
+          <table class="table" mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="Data">
+              <td class="product-data" mat-cell *matCellDef="let data">
+                <app-small-cards [data]="data" (signal)="newProduct($event)" />
+              </td>
+            </ng-container>
+            <tr
+              class="data-row"
+              mat-row
+              *matRowDef="let row; columns: column"
+            ></tr>
+          </table>
+          <mat-paginator
+            class="paginator"
+            [pageSizeOptions]="[4]"
+          ></mat-paginator>
+          } @else {
+          <div class="empty">
+            <h2 class="empty-text">No data at this moment</h2>
+          </div>
+          } }
+        </div>
+      </div>
+    </div>
+    } @loading {
+    <div>Waiting...</div>
+    }
+  </div>
+  <div class="spinner-wrap" #spin>
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
 </div>

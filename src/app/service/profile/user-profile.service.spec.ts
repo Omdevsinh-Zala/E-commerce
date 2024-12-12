@@ -10,26 +10,29 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../../environments/environment.development';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 
 import 'zone.js';
 import { firstValueFrom } from 'rxjs';
 
 describe('UserProfileService', () => {
   let service: UserProfileService;
-  let httpTesting:HttpTestingController
+  let httpTesting: HttpTestingController;
   let env = environment.forUsers;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers:[
+      providers: [
         provideHttpClient(),
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        provideHttpClientTesting()
-      ]
+        provideHttpClientTesting(),
+      ],
     });
     service = TestBed.inject(UserProfileService);
     httpTesting = TestBed.inject(HttpTestingController);
@@ -39,42 +42,45 @@ describe('UserProfileService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get user data', async() => {
+  it('should get user data', async () => {
     const user$ = service.getUserProfile();
     const promise = firstValueFrom(user$);
-    const req = httpTesting.expectOne(`${env}/users.json`, 'Requesting user data');
+    const req = httpTesting.expectOne(
+      `${env}/users.json`,
+      'Requesting user data'
+    );
     expect(req.request.method).toBe('GET');
     const recieveData = {
-      1:{
+      1: {
         firstName: 'string',
         lastName: 'string',
         email: 'string',
         gender: 'string',
         phoneNumber: 1111111111,
-        address: 'string'
+        address: 'string',
       },
-      2:{
+      2: {
         firstName: 'string',
         lastName: 'string',
         email: 'string',
         gender: 'string',
         phoneNumber: 1111111111,
-        address: 'string'
-      }
-    }
+        address: 'string',
+      },
+    };
     req.flush(recieveData);
     expect(await promise).toEqual(recieveData);
-  })
+  });
 
-  it('should post user data', async() => {
+  it('should post user data', async () => {
     const data = {
       firstName: 'string',
       lastName: 'string',
       email: 'string',
       gender: 'string',
       phoneNumber: 1111111111,
-      address: 'string'
-    }
+      address: 'string',
+    };
     const data$ = service.postUserProfile(data);
     const promise = firstValueFrom(data$);
     const req = httpTesting.expectOne(`${env}/users.json`);
@@ -83,15 +89,15 @@ describe('UserProfileService', () => {
     expect(await promise).toEqual(data);
   });
 
-  it('should update the user', async() => {
+  it('should update the user', async () => {
     const data = {
       firstName: 'Hello',
       lastName: 'string',
       email: 'string',
       gender: 'string',
       phoneNumber: 1111111111,
-      address: 'string'
-    }
+      address: 'string',
+    };
     const endUrl = 2;
     const user$ = service.updateUserProfile(data, `${endUrl}`);
     const promise = firstValueFrom(user$);
@@ -99,5 +105,5 @@ describe('UserProfileService', () => {
     expect(req.request.method).toContain('PATCH');
     req.flush(data);
     expect(await promise).toEqual(data);
-  })
+  });
 });

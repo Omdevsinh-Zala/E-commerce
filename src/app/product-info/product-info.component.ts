@@ -6,12 +6,11 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Swiper } from 'swiper/bundle';
 import { ProductsService } from '../service/product/products.service';
 import { Products } from '../service/product/products';
 import { filter, from, toArray } from 'rxjs';
-import { PreviousUrlService } from '../service/previousUrl/previous-url.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { CartBadgeService } from '../service/cartBadge/cart-badge.service';
@@ -29,9 +28,8 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private api: ProductsService,
-    private url: PreviousUrlService,
     private router: Router,
-    private title:Title
+    private title: Title
   ) {}
 
   productData!: Products;
@@ -45,14 +43,11 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.allProducts.push(...data);
       },
-      complete:() => {
+      complete: () => {
         this.getProduct();
-      }
+      },
     });
     console.warn = () => {};
-    this.url.getPreviour();
-    this.previousPage = this.url.previousPage;
-    this.queryParams = this.url.queryParams;
   }
 
   ngAfterViewInit(): void {
@@ -134,9 +129,9 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
 
   getProducts(id: string) {
     const product = this.allProducts.find((product) => product.id == id);
-    this.productData = product
-    this.ratings = product.rating
-    this.images = product.images
+    this.productData = product;
+    this.ratings = product.rating;
+    this.images = product.images;
     this.title.setTitle(`Product | ${product.title}`);
   }
 
@@ -186,10 +181,6 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
     e.stopImmediatePropagation();
     this.count.addToCart(data);
   }
-
-  //for previous page
-  previousPage: string = '';
-  queryParams!: Params;
 
   //for selected product to route
   newProduct(id: string) {

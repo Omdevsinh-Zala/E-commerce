@@ -31,15 +31,13 @@ export class UpdateComponent implements OnInit {
             let index: number = 0;
             let user: UserProfile[] = value.filter((data) => {
               if (data['email'] == this.email) {
-                  this.gender = data['gender'];
-                  this.phoneNumber = data['phoneNumber'];
-                  this.address = data['address'];
-                  this.watch();
-                  index = value.findIndex(
-                    (data) => data['email'] == this.email
-                  );
-                  let key = keys[index];
-                  this.endPoint.next(key);
+                this.gender = data['gender'];
+                this.phoneNumber = data['phoneNumber'];
+                this.address = data['address'];
+                this.watch();
+                index = value.findIndex((data) => data['email'] == this.email);
+                let key = keys[index];
+                this.endPoint.next(key);
               }
             });
           },

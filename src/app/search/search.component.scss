@@ -30,9 +30,9 @@
         border-radius: 8px;
         box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.262),
           5px 5px 10px rgb(204, 204, 204);
-          @media (max-width: 350px) {
-            width: 100%;
-          }
+        @media (max-width: 350px) {
+          width: 100%;
+        }
       }
       .suggetions-wrap {
         position: absolute;

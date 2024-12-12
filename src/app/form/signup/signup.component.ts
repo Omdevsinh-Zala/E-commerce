@@ -8,34 +8,33 @@ import { UserProfile } from '../../service/profile/user-profile';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss'
+  styleUrl: './signup.component.scss',
 })
 export class SignupComponent implements AfterViewInit {
-
-  constructor(private postService: UserService) { }
+  constructor(private postService: UserService) {}
 
   ngAfterViewInit(): void {
     this.postService.user$.subscribe({
-      next:(data) => {
-        if(data) {
+      next: (data) => {
+        if (data) {
           this.router.navigate(['/products']);
         }
-      }
-    })
+      },
+    });
   }
 
   router = inject(Router);
   errorMessage: string[] = [];
-  successMessage:string = '';
-  timer:any;
-  successTimer: any
+  successMessage: string = '';
+  timer: any;
+  successTimer: any;
   post = inject(UserProfileService);
 
   signUp = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required]),
   });
 
   SignUpUser() {
@@ -45,40 +44,40 @@ export class SignupComponent implements AfterViewInit {
     const password: string = this.signUp.value.password;
 
     const user = {
-        name: firstName + ' ' + lastName,
-        email: email,
-        password: password
-      }
+      name: firstName + ' ' + lastName,
+      email: email,
+      password: password,
+    };
 
     this.postService.register(user).subscribe({
-      next:() => {
+      next: () => {
         this.successMessage = 'Sign-up Successfully';
         clearTimeout(this.successTimer);
         this.successTimer = setTimeout(() => {
-          this.router.navigateByUrl('login')
+          this.router.navigateByUrl('login');
           this.successMessage = '';
-        },1000)
-        let postUser:UserProfile = {
+        }, 1000);
+        let postUser: UserProfile = {
           firstName: firstName,
           lastName: lastName,
-          email:email,
+          email: email,
           gender: null,
           phoneNumber: null,
-          address: null
-        }
+          address: null,
+        };
         this.post.postUserProfile(postUser).subscribe({
-          error:(err) => {
-            console.error(err)
-          }
+          error: (err) => {
+            console.error(err);
+          },
         });
       },
-      error:(err) => {
+      error: (err) => {
         this.errorMessage.push(err.code.split('/')[1]);
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
           this.errorMessage = [];
-        }, 3000)
-      }
+        }, 3000);
+      },
     });
   }
 }

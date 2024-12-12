@@ -4,11 +4,10 @@ import { ProductsService } from '../product/products.service';
 import { map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TitleService {
-
-  constructor() { }
+  constructor() {}
   // resolve(router:ActivatedRouteSnapshot) {
   //   const id = router.paramMap.get('id');
   //   return this.product.getProduct(id).pipe(

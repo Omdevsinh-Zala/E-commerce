@@ -75,7 +75,7 @@ describe('SmallCardsComponent', () => {
     fixture.detectChanges();
 
     let emiitedValue = '';
-    component.signal.subscribe((id) => emiitedValue = id)
+    component.signal.subscribe((id) => (emiitedValue = id));
 
     const cardElement = fixture.nativeElement.querySelector('.card');
     cardElement.click();
@@ -87,11 +87,12 @@ describe('SmallCardsComponent', () => {
     component.data = data as unknown as InputSignal<Products>;
     fixture.detectChanges();
 
-    const cardElement = fixture.nativeElement.querySelector('.product-thumbnail');
+    const cardElement =
+      fixture.nativeElement.querySelector('.product-thumbnail');
     let cardTitle = fixture.nativeElement.querySelector('.card-inner-title');
     const actualThumnail = cardElement.src.split('/');
     const cardTitleText = cardTitle.textContent;
     expect(actualThumnail.pop()).toEqual(data().thumbnail);
     expect(cardTitleText).toEqual(data().title);
-  })
+  });
 });

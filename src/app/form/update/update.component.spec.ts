@@ -25,23 +25,22 @@ describe('UpdateComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UpdateComponent],
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        provideHttpClient()
+        provideHttpClient(),
       ],
-      imports:[
+      imports: [
         ReactiveFormsModule,
         MatRadioModule,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
-        BrowserAnimationsModule
-      ]
-    })
-    .compileComponents();
+        BrowserAnimationsModule,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UpdateComponent);
     component = fixture.componentInstance;

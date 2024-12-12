@@ -22,18 +22,14 @@ describe('MainRouterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MainRouterComponent, NavbarComponent],
-      imports:[
-        RouterOutlet,
-        MatIconModule
-      ],
-      providers:[
+      imports: [RouterOutlet, MatIconModule],
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideDatabase(() => getDatabase())
-      ]
-    })
-    .compileComponents();
+        provideDatabase(() => getDatabase()),
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MainRouterComponent);
     component = fixture.componentInstance;

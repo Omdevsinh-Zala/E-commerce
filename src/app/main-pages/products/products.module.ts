@@ -48,7 +48,7 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     MatPaginatorModule,
     MatTableModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class ProductsModule { }
+export class ProductsModule {}

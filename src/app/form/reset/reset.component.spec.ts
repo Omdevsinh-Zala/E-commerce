@@ -22,23 +22,22 @@ describe('ResetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        provideHttpClient()
+        provideHttpClient(),
       ],
-      imports:[
+      imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
         MatLabel,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
-      declarations: [ResetComponent]
-    })
-    .compileComponents();
+      declarations: [ResetComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ResetComponent);
     component = fixture.componentInstance;

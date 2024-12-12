@@ -1,12 +1,22 @@
 <div class="filter">
-    <div class="category-wrap">
-        <div class="checkbox-wrap">
-            <mat-radio-group [formControl]="categoryForm" class="radio-group" (change)="changeCategory($event)">
-                @for(category of categories;track category) {
-                <mat-radio-button  class="category" routerLink="/products" [queryParams]="{Category : category}" [value]="category">{{category}}</mat-radio-button>
-                }
-            </mat-radio-group>
-            <button mat-button (click)="clearButton()">Clear</button>
-        </div>
+  <div class="category-wrap">
+    <div class="checkbox-wrap">
+      <mat-radio-group
+        [formControl]="categoryForm"
+        class="radio-group"
+        (change)="changeCategory($event)"
+      >
+        @for(category of categories;track category) {
+        <mat-radio-button
+          class="category"
+          routerLink="/products"
+          [queryParams]="{ Category: category }"
+          [value]="category"
+          >{{ category }}</mat-radio-button
+        >
+        }
+      </mat-radio-group>
+      <button mat-button (click)="clearButton()">Clear</button>
     </div>
+  </div>
 </div>

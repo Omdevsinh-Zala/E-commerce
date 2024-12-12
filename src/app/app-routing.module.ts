@@ -10,56 +10,61 @@ import { ResetComponent } from './form/reset/reset.component';
 
 const routes: Routes = [
   {
-    path:'login',
-    component:LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path:'sign-up',
-    component:SignupComponent
+    path: 'sign-up',
+    component: SignupComponent,
   },
   {
-    path:'update-profile',
-    component:UpdateComponent
+    path: 'update-profile',
+    component: UpdateComponent,
   },
   {
-    path:'login/update-password',
-    component:ResetComponent
-  },
-  {
-    path:'',
-    redirectTo:'/products',
-    pathMatch:'full'
+    path: 'login/update-password',
+    component: ResetComponent,
   },
   {
     path: '',
-    component:MainRouterComponent,
-    children:[
+    redirectTo: '/products',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: MainRouterComponent,
+    children: [
       {
         path: 'products',
-        loadChildren: () => import('./main-pages/products/products.module').then(m => m.ProductsModule),
-        title: 'Products'
+        loadChildren: () =>
+          import('./main-pages/products/products.module').then(
+            (m) => m.ProductsModule
+          ),
+        title: 'Products',
       },
       {
         path: 'cart',
-        loadChildren: () => import('./main-pages/cart/cart.module').then(m => m.CartModule),
-        title: 'Cart'
+        loadChildren: () =>
+          import('./main-pages/cart/cart.module').then((m) => m.CartModule),
+        title: 'Cart',
       },
       {
         path: 'home',
-        loadChildren: () => import('./main-pages/home/home.module').then(m => m.HomeModule),
-        title: 'Home'
+        loadChildren: () =>
+          import('./main-pages/home/home.module').then((m) => m.HomeModule),
+        title: 'Home',
       },
       {
         path: 'products/:id',
         component: ProductInfoComponent,
         // title: TitleService
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

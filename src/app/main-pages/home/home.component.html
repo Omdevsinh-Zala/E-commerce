@@ -1,45 +1,48 @@
 <div class="container">
-    <div class="userInfo-wrap">
-        <div class="detail-wrap half">
-            <div class="info">FirstName:</div>
-            <div class="user-detail">
-                {{firstName? firstName : 'Guest'}}
-            </div>
-        </div>
-        <div class="detail-wrap half">
-            <div class="info">LastName:</div>
-            <div [ngClass]="lasName?'user-detail':'dull'">
-                {{lasName? lasName : '****'}}
-            </div>
-        </div>
-        <div class="detail-wrap half">
-            <div class="info">Gender:</div>
-            <div [ngClass]="gender?'user-detail':'dull'">
-                {{gender? gender : '****'}}
-            </div>
-        </div>
-        <div class="detail-wrap half">
-            <div class="info">PhoneNumber:</div>
-            <div [ngClass]="phoneNumber?'user-detail':'dull'">
-                {{phoneNumber? phoneNumber : '********'}}
-            </div>
-        </div>
-        <div class="detail-wrap">
-            <div class="info">Email:</div>
-            <div [ngClass]="email?'user-detail':'dull'">
-                {{email? email : '****@**.**'}}
-            </div>
-        </div>
-        <div class="detail-wrap">
-            <div class="info">Address:</div>
-            <div [ngClass]="address?'user-detail':'dull'">
-                {{address? address : '****'}}
-            </div>
-        </div>
+  <div class="userInfo-wrap">
+    <div class="detail-wrap half">
+      <div class="info">FirstName:</div>
+      <div class="user-detail">
+        {{ firstName ? firstName : "Guest" }}
+      </div>
     </div>
-    <div class="button-wrap">
-        <a routerLink="{{firstName?'/update-profile':'/login'}}" [ngClass]="firstName?'btn update-btn':'btn login-btn'">
-            {{firstName?'Update':'Login'}}
-        </a>
+    <div class="detail-wrap half">
+      <div class="info">LastName:</div>
+      <div [ngClass]="lasName ? 'user-detail' : 'dull'">
+        {{ lasName ? lasName : "****" }}
+      </div>
     </div>
+    <div class="detail-wrap half">
+      <div class="info">Gender:</div>
+      <div [ngClass]="gender ? 'user-detail' : 'dull'">
+        {{ gender ? gender : "****" }}
+      </div>
+    </div>
+    <div class="detail-wrap half">
+      <div class="info">PhoneNumber:</div>
+      <div [ngClass]="phoneNumber ? 'user-detail' : 'dull'">
+        {{ phoneNumber ? phoneNumber : "********" }}
+      </div>
+    </div>
+    <div class="detail-wrap">
+      <div class="info">Email:</div>
+      <div [ngClass]="email ? 'user-detail' : 'dull'">
+        {{ email ? email : "****@**.**" }}
+      </div>
+    </div>
+    <div class="detail-wrap">
+      <div class="info">Address:</div>
+      <div [ngClass]="address ? 'user-detail' : 'dull'">
+        {{ address ? address : "****" }}
+      </div>
+    </div>
+  </div>
+  <div class="button-wrap">
+    <a
+      routerLink="{{ firstName ? '/update-profile' : '/login' }}"
+      [ngClass]="firstName ? 'btn update-btn' : 'btn login-btn'"
+    >
+      {{ firstName ? "Update" : "Login" }}
+    </a>
+  </div>
 </div>

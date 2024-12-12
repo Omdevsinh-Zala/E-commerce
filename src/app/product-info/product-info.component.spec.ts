@@ -26,7 +26,7 @@ describe('ProductInfoComponent', () => {
     queryParams: of({ sort: 'asc' }),
     snapshot: { paramMap: { get: (key: string) => '1' } },
   };
-  const data:Products = {
+  const data: Products = {
     id: '1',
     title: 'string',
     price: 100,
@@ -62,7 +62,7 @@ describe('ProductInfoComponent', () => {
       barcode: 'string',
       qrCode: 'string',
     },
-    images: ['1','2'],
+    images: ['1', '2'],
     thumbnail: 'string',
     category: '',
     description: '',
@@ -71,7 +71,7 @@ describe('ProductInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[
+      providers: [
         provideHttpClient(),
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
@@ -81,12 +81,8 @@ describe('ProductInfoComponent', () => {
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ],
       declarations: [ProductInfoComponent],
-      imports:[
-        MatIconModule,
-        MatProgressSpinnerModule
-      ]
-    })
-    .compileComponents();
+      imports: [MatIconModule, MatProgressSpinnerModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProductInfoComponent);
     component = fixture.componentInstance;

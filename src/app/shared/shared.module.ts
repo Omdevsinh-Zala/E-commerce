@@ -5,21 +5,9 @@ import { MatIcon } from '@angular/material/icon';
 import { MatOptionModule } from '@angular/material/core';
 import { RouterLink } from '@angular/router';
 
-
-
 @NgModule({
-  declarations: [
-    SearchComponent,
-  ],
-  imports: [
-    CommonModule,
-    MatIcon,
-    MatOptionModule,
-    AsyncPipe,
-    RouterLink
-  ],
-  exports:[
-    SearchComponent
-  ]
+  declarations: [SearchComponent],
+  imports: [CommonModule, MatIcon, MatOptionModule, AsyncPipe, RouterLink],
+  exports: [SearchComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

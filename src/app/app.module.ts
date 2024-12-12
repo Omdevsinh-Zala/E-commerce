@@ -20,7 +20,11 @@ import { LoginComponent } from './form/login/login.component';
 import { SignupComponent } from './form/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
-import { FirebaseAppModule, initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import {
+  FirebaseAppModule,
+  initializeApp,
+  provideFirebaseApp,
+} from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
@@ -70,6 +74,6 @@ import { ResetComponent } from './form/reset/reset.component';
     provideFirestore(() => getFirestore()),
     provideDatabase(() => getDatabase()),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

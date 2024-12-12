@@ -1,34 +1,40 @@
 <div class="container">
-    <div class="form-wrap">
-        <div class="erorr-wrap" *ngIf="errorMessage.length != 0">
-            @for (error of errorMessage; track $index) {
-                <div class="error">
-                    {{ error }}
-                </div>
-            }
-        </div>
-        <div class="success-wrap" *ngIf="successMessage">
-                <div class="success">
-                    {{ successMessage }}
-                </div>
-        </div>
-        <form class="sign-up-form" [formGroup]="resetForm" (submit)="resetPassword()" >
-            <legend class="legend">Update Password</legend>
-            <div class="first-part">
-                <mat-form-field class="email-wrap">
-                    <mat-label class="label" >Email</mat-label>
-                    <input formControlName="email" matInput type="email"/>
-                </mat-form-field>
-            </div>
-            <div class="second-part">
-                <mat-form-field class="pass-wrap">
-                    <mat-label class="label" >Password</mat-label>
-                    <input formControlName="password" matInput type="password"/>
-                </mat-form-field>
-            </div>
-            <div class="third-part">
-                <button [disabled]="!resetForm.valid" class="btn submit-btn">Reset</button>
-            </div>
-        </form>
+  <div class="form-wrap">
+    <div class="erorr-wrap" *ngIf="errorMessage.length != 0">
+      @for (error of errorMessage; track $index) {
+      <div class="error">
+        {{ error }}
+      </div>
+      }
     </div>
+    <div class="success-wrap" *ngIf="successMessage">
+      <div class="success">
+        {{ successMessage }}
+      </div>
+    </div>
+    <form
+      class="sign-up-form"
+      [formGroup]="resetForm"
+      (submit)="resetPassword()"
+    >
+      <legend class="legend">Update Password</legend>
+      <div class="first-part">
+        <mat-form-field class="email-wrap">
+          <mat-label class="label">Email</mat-label>
+          <input formControlName="email" matInput type="email" />
+        </mat-form-field>
+      </div>
+      <div class="second-part">
+        <mat-form-field class="pass-wrap">
+          <mat-label class="label">Password</mat-label>
+          <input formControlName="password" matInput type="password" />
+        </mat-form-field>
+      </div>
+      <div class="third-part">
+        <button [disabled]="!resetForm.valid" class="btn submit-btn">
+          Reset
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

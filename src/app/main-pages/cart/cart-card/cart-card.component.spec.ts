@@ -63,17 +63,14 @@ describe('CartCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CartCardComponent],
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
-        provideDatabase(() => getDatabase())
+        provideDatabase(() => getDatabase()),
       ],
-      schemas:[
-        NO_ERRORS_SCHEMA
-      ]
-    })
-    .compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CartCardComponent);
     component = fixture.componentInstance;

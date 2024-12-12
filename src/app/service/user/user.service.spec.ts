@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
-import { Auth, getAuth, provideAuth, user } from '@angular/fire/auth';
+import { Auth, getAuth, provideAuth } from '@angular/fire/auth';
 import 'zone.js';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { provideDatabase } from '@angular/fire/database';
@@ -107,7 +107,7 @@ describe('UserService', () => {
 
     createUserMock.mockResolvedValue({});
     const setUserSpy = jest.spyOn(service, 'setUser');
-    
+
     await firstValueFrom(service.login(userData));
     expect(createUserMock).toHaveBeenCalledWith(
       auth,

@@ -11,10 +11,7 @@ import { CartCardComponent } from './cart-card/cart-card.component';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    CartComponent,
-    CartCardComponent,
-  ],
+  declarations: [CartComponent, CartCardComponent],
   imports: [
     CommonModule,
     CartRoutingModule,
@@ -22,7 +19,7 @@ import { SharedModule } from '../../shared/shared.module';
     MatBadgeModule,
     MatTableModule,
     MatPaginatorModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class CartModule { }
+export class CartModule {}

@@ -3,7 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { TitleService } from './title.service';
 import 'zone.js';
 import { provideHttpClient } from '@angular/common/http';
-import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 
@@ -13,10 +16,7 @@ describe('TitleService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers:[
-        provideHttpClient(),
-        provideHttpClientTesting()
-      ]
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(TitleService);
     httpTesting = TestBed.inject(HttpTestingController);

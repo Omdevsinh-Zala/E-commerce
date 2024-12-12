@@ -7,42 +7,41 @@ import { UserProfile } from '../../service/profile/user-profile';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-
   service = inject(UserService);
   backEnd = inject(UserProfileService);
   ngOnInit(): void {
     this.service.user$.subscribe({
-      next:(user:string) => {
+      next: (user: string) => {
         this.firstName = user.split(' ')[0];
         this.lasName = user.split(' ')[1];
-      }
+      },
     });
     this.service.user.subscribe({
-      next:(data) => {
+      next: (data) => {
         this.email = data.email;
         this.backEnd.getUserProfile().subscribe({
-          next:(data:{[key:string]:UserProfile}) => {
+          next: (data: { [key: string]: UserProfile }) => {
             let value = Object.values(data);
             let user = value.filter((data) => {
-              if(data.email == this.email) {
-                this.gender = data.gender
-                this.phoneNumber = data.phoneNumber
-                this.address = data.address
+              if (data.email == this.email) {
+                this.gender = data.gender;
+                this.phoneNumber = data.phoneNumber;
+                this.address = data.address;
               }
             });
-          }
+          },
         });
-      }
-    })
+      },
+    });
   }
 
-  firstName:string | null = null;
-  lasName:string | null = null;
-  email:string | null = null;
-  phoneNumber:number | null = null;
-  gender:string | null = null
-  address:string | null = null;
+  firstName: string | null = null;
+  lasName: string | null = null;
+  email: string | null = null;
+  phoneNumber: number | null = null;
+  gender: string | null = null;
+  address: string | null = null;
 }

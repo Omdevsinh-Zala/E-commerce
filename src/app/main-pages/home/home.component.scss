@@ -5,9 +5,9 @@
   border-radius: 12px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.188),
     inset 5px 5px 10px rgba(208, 208, 208, 0.404);
-    @media(max-width: 488px) {
-      flex-direction: column;
-    }
+  @media (max-width: 488px) {
+    flex-direction: column;
+  }
 
   .detail-wrap {
     display: flex;
@@ -58,7 +58,6 @@
     padding: 10px 25px;
     font-size: 18px;
     text-decoration: none;
-    
 
     &.update-btn {
       border-radius: 8px;
@@ -76,11 +75,11 @@
     }
 
     &.login-btn {
-        background-color: #ffffff;
-        color: #000;
-        border-bottom: 1px solid black;
-        border-radius: none;
-        font-weight: 500;
+      background-color: #ffffff;
+      color: #000;
+      border-bottom: 1px solid black;
+      border-radius: none;
+      font-weight: 500;
     }
   }
 }

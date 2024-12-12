@@ -1,4 +1,21 @@
-import { Component, computed, DoCheck, effect, ElementRef, Inject, inject, Injector, input, OnChanges, OnInit, Signal, signal, SimpleChanges, ViewChild, WritableSignal } from '@angular/core';
+import {
+  Component,
+  computed,
+  DoCheck,
+  effect,
+  ElementRef,
+  Inject,
+  inject,
+  Injector,
+  input,
+  OnChanges,
+  OnInit,
+  Signal,
+  signal,
+  SimpleChanges,
+  ViewChild,
+  WritableSignal,
+} from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Products } from '../service/product/products';
 import { CartBadgeService } from '../service/cartBadge/cart-badge.service';
@@ -9,13 +26,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
-
 export class NavbarComponent implements OnInit {
-
-  constructor(private count:CartBadgeService) {
-  }
+  constructor(private count: CartBadgeService) {}
 
   product = input<Products[]>(JSON.parse(localStorage.getItem('Cart')));
 
@@ -23,25 +37,25 @@ export class NavbarComponent implements OnInit {
     console.error = () => {};
   }
 
-  @ViewChild('hideNav') nav!:ElementRef;
-  isHidden:boolean = true;
+  @ViewChild('hideNav') nav!: ElementRef;
+  isHidden: boolean = true;
   toggleNav() {
-    if(this.isHidden) {
+    if (this.isHidden) {
       this.nav.nativeElement.classList.add('nav-close');
       this.nav.nativeElement.classList.add('nav-show');
-      this.isHidden = false
-      setTimeout(()=>{
+      this.isHidden = false;
+      setTimeout(() => {
         this.nav.nativeElement.classList.remove('nav-show');
-      },500)
+      }, 500);
     } else {
       this.nav.nativeElement.classList.add('nav-hide');
-      this.isHidden = true
+      this.isHidden = true;
       setTimeout(() => {
         this.nav.nativeElement.classList.remove('nav-close');
         this.nav.nativeElement.classList.remove('nav-hide');
-      }, 300)
+      }, 300);
     }
   }
 
-  badgeCount:Observable<number> = this.count.getCount();
+  badgeCount: Observable<number> = this.count.getCount();
 }

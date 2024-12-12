@@ -24,21 +24,20 @@ describe('SignupComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SignupComponent],
-      providers:[
+      providers: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        provideHttpClient()
+        provideHttpClient(),
       ],
-      imports:[
+      imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        BrowserAnimationsModule
-      ]
-    })
-    .compileComponents();
+        BrowserAnimationsModule,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SignupComponent);
     component = fixture.componentInstance;

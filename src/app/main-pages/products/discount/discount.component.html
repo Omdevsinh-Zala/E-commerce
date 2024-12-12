@@ -1,8 +1,14 @@
 <div class="discount-wrap">
-    <mat-radio-group class="discount-group" [formControl]="radioForm" (change)="ChangeDiscount($event)">
-        @for(discount of disconts;track discount) {
-            <mat-radio-button [value]="discount">{{discount[0]}}% ~ {{discount[1]}}%</mat-radio-button>
-        }
-    </mat-radio-group>
-    <button mat-button (click)="clearDiscount()">Clear</button>
+  <mat-radio-group
+    class="discount-group"
+    [formControl]="radioForm"
+    (change)="ChangeDiscount($event)"
+  >
+    @for(discount of disconts;track discount) {
+    <mat-radio-button [value]="discount"
+      >{{ discount[0] }}% ~ {{ discount[1] }}%</mat-radio-button
+    >
+    }
+  </mat-radio-group>
+  <button mat-button (click)="clearDiscount()">Clear</button>
 </div>

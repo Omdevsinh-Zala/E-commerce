@@ -11,17 +11,10 @@ describe('FilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers:[
-        provideHttpClient()
-      ],
+      providers: [provideHttpClient()],
       declarations: [FilterComponent],
-      imports:[
-        MatRadioModule,
-        MatRadioGroup,
-        ReactiveFormsModule
-      ]
-    })
-    .compileComponents();
+      imports: [MatRadioModule, MatRadioGroup, ReactiveFormsModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;

@@ -1,85 +1,100 @@
 <div class="container">
-    <div class="search-wrap">
-        <app-search [data]="updatedProductsData" (product)="searchedProductName($event)" />
-    </div>
-    <div class="content-container" #main>
-        <div class="filter-wrap">
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            categories
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <!-- <app-filter (changedCategory)="filteredCategoryChange($event)" /> -->
-                    <app-filter [recentValue]="selectedValues" (temprarySignal)="SignalChange($event)" />
-                </mat-expansion-panel>
-            </mat-accordion>
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Discount
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <!-- <app-discount (discount)="discountChange($event)" [clearSignal]="clearDiscount" /> -->
-                    <app-discount [recentValue]="selectedValues" [clearSignal]="clearDiscount"
-                        (temprarySignal)="SignalChange($event)" />
-                </mat-expansion-panel>
-            </mat-accordion>
+  <div class="search-wrap">
+    <app-search
+      [data]="updatedProductsData"
+      (product)="searchedProductName($event)"
+    />
+  </div>
+  <div class="content-container" #main>
+    <div class="filter-wrap">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> categories </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <app-filter (changedCategory)="filteredCategoryChange($event)" /> -->
+          <app-filter
+            [recentValue]="selectedValues"
+            (temprarySignal)="SignalChange($event)"
+          />
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Discount </mat-panel-title>
+          </mat-expansion-panel-header>
+          <!-- <app-discount (discount)="discountChange($event)" [clearSignal]="clearDiscount" /> -->
+          <app-discount
+            [recentValue]="selectedValues"
+            [clearSignal]="clearDiscount"
+            (temprarySignal)="SignalChange($event)"
+          />
+        </mat-expansion-panel>
+      </mat-accordion>
 
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Ascending
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            High to low
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <!-- <app-ascending [closeSignal]="clearDiscount" (ascendingValue)="groupByAsending($event)" /> -->
-                    <app-ascending [recentValue]="selectedValues" [closeSignal]="clearDiscount"
-                        (temporarySignal)="SignalChange($event)" />
-                </mat-expansion-panel>
-            </mat-accordion>
-            <mat-accordion>
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Descending
-                        </mat-panel-title>
-                        <mat-panel-description>
-                            Low to high
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <!-- <app-descending [clearSignal]="clearDiscount" (descendingValue)="groupByDescending($event)" /> -->
-                    <app-descending [recentValue]="selectedValues" [clearSignal]="clearDiscount"
-                        (temporarySignal)="SignalChange($event)" />
-                </mat-expansion-panel>
-            </mat-accordion>
-        </div>
-        <div class="card-container" #secondary>
-            @if(isEmpty) {
-            <div class="empty-wrap">
-                <h2 class="empty">Empty</h2>
-            </div>
-            } @else {
-            <mat-paginator (page)="changePage()" class="paginator" [pageSizeOptions]="[16]"></mat-paginator>
-            <div class="table-wrap" #maintable>
-                <table class="table" mat-table [dataSource]="isSearched?searchDataSource:products">
-                    <ng-container matColumnDef="Products">
-                        <td class="product-data" mat-cell *matCellDef="let product">
-                            <app-cards [products]="product"></app-cards>
-                        </td>
-                    </ng-container>
-                    <tr class="data-row" mat-row *matRowDef="let row; columns: column;"></tr>
-                </table>
-            </div>
-            }
-        </div>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Ascending </mat-panel-title>
+            <mat-panel-description> High to low </mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- <app-ascending [closeSignal]="clearDiscount" (ascendingValue)="groupByAsending($event)" /> -->
+          <app-ascending
+            [recentValue]="selectedValues"
+            [closeSignal]="clearDiscount"
+            (temporarySignal)="SignalChange($event)"
+          />
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Descending </mat-panel-title>
+            <mat-panel-description> Low to high </mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- <app-descending [clearSignal]="clearDiscount" (descendingValue)="groupByDescending($event)" /> -->
+          <app-descending
+            [recentValue]="selectedValues"
+            [clearSignal]="clearDiscount"
+            (temporarySignal)="SignalChange($event)"
+          />
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
-    <div class="spinner-wrap" #spin>
-        <mat-spinner class="spinner"></mat-spinner>
+    <div class="card-container" #secondary>
+      @if(isEmpty) {
+      <div class="empty-wrap">
+        <h2 class="empty">Empty</h2>
+      </div>
+      } @else {
+      <mat-paginator
+        (page)="changePage()"
+        class="paginator"
+        [pageSizeOptions]="[16]"
+      ></mat-paginator>
+      <div class="table-wrap" #maintable>
+        <table
+          class="table"
+          mat-table
+          [dataSource]="isSearched ? searchDataSource : products"
+        >
+          <ng-container matColumnDef="Products">
+            <td class="product-data" mat-cell *matCellDef="let product">
+              <app-cards [products]="product"></app-cards>
+            </td>
+          </ng-container>
+          <tr
+            class="data-row"
+            mat-row
+            *matRowDef="let row; columns: column"
+          ></tr>
+        </table>
+      </div>
+      }
     </div>
+  </div>
+  <div class="spinner-wrap" #spin>
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
 </div>

@@ -11,12 +11,8 @@ describe('AscendingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AscendingComponent],
-      imports:[
-        MatRadioModule,
-        ReactiveFormsModule
-      ]
-    })
-    .compileComponents();
+      imports: [MatRadioModule, ReactiveFormsModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AscendingComponent);
     component = fixture.componentInstance;

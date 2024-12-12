@@ -11,12 +11,8 @@ describe('DescendingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DescendingComponent],
-      imports:[
-        MatRadioModule,
-        ReactiveFormsModule
-      ]
-    })
-    .compileComponents();
+      imports: [MatRadioModule, ReactiveFormsModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DescendingComponent);
     component = fixture.componentInstance;

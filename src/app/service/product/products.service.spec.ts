@@ -114,9 +114,8 @@ describe('ProductsService', () => {
     expect(request.request.method).toBe('GET');
     const reciveData = {
       limit: 10,
-      products:
-        [
-          {
+      products: [
+        {
           id: '1',
           title: 'string',
           price: 100,
@@ -158,7 +157,7 @@ describe('ProductsService', () => {
           description: '',
           quantity: 2,
         },
-          {
+        {
           id: '4',
           title: 'string',
           price: 100,
@@ -204,10 +203,10 @@ describe('ProductsService', () => {
       skip: 1,
       total: 1,
     };
-    const getProductWithId = (id: string, product:ReciveData) => {
+    const getProductWithId = (id: string, product: ReciveData) => {
       return product.products.find((product) => product.id == id);
-    }
-    const expectedResult = getProductWithId(id, reciveData)
+    };
+    const expectedResult = getProductWithId(id, reciveData);
     request.flush(reciveData);
     expect(await productPromise).toEqual(expectedResult);
   });
