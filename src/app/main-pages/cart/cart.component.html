@@ -19,8 +19,8 @@
         <td class="product-data" mat-cell *matCellDef="let data">
           <app-cart-card
             [products]="data"
-            (signal)="onCatch($event)"
-            (total)="runTotal($event)"
+            (signal)="onCatch()"
+            (total)="runTotal()"
           />
         </td>
       </ng-container>

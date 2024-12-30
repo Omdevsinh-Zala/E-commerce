@@ -13,10 +13,16 @@ import { getFirestore } from 'firebase/firestore';
 import { environment } from '../../../../environments/environment.development';
 import { InputSignal, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Products } from '../../../service/product/products';
+import { UserCart } from '../../../service/cartBadge/user-cart';
+import { of } from 'rxjs';
 
 describe('CartCardComponent', () => {
   let component: CartCardComponent;
   let fixture: ComponentFixture<CartCardComponent>;
+  let localStorageMock: {
+    setItem: jest.Mock<string>;
+    getItem: jest.Mock<string>;
+  };
   const data = signal<Products>({
     id: '1',
     title: 'string',
@@ -60,7 +66,18 @@ describe('CartCardComponent', () => {
     quantity: 2,
   }) as unknown as InputSignal<Products>;
 
+  const userData: UserCart = {
+    products: [{ ...data() }],
+    completeOrder: false,
+    user: 'Test',
+  };
+
   beforeEach(async () => {
+    localStorageMock = {
+      getItem: jest.fn(),
+      setItem: jest.fn(),
+    };
+
     await TestBed.configureTestingModule({
       declarations: [CartCardComponent],
       providers: [
@@ -76,9 +93,107 @@ describe('CartCardComponent', () => {
     component = fixture.componentInstance;
     component.products = data;
     fixture.detectChanges();
+
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorageMock,
+      writable: true,
+    });
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should run OnInit function', () => {
+    const user = 'Test';
+    component.changeTotal = jest.fn();
+    component.service.user$ = of(user);
+    jest.useFakeTimers();
+    component.ngOnInit();
+    jest.advanceTimersByTime(200);
+    expect(component.user).toBe(user);
+    expect(component.changeTotal).toHaveBeenCalled();
+    jest.useRealTimers();
+  });
+
+  it('should run changes on ngOnChanges', () => {
+    //For logged in user
+    component.user = 'Test';
+    localStorageMock.getItem.mockReturnValue(JSON.stringify([userData]));
+    component.ngOnChanges();
+    expect(localStorageMock.getItem).toHaveBeenCalledWith('UserCart');
+    expect(component.product).toEqual([userData]);
+
+    //For looged out user
+    component.user = null;
+    localStorageMock.getItem.mockReturnValue(JSON.stringify([data()]));
+    component.ngOnChanges();
+    expect(localStorageMock.getItem).toHaveBeenCalledWith('Cart');
+    expect(component.product).toEqual([data()]);
+  });
+
+  it('should increase quantity', () => {
+    const event = new Event('click');
+    component.signal.emit = jest.fn();
+    component.changeTotal = jest.fn();
+    component.user = 'Test';
+    localStorageMock.getItem.mockReturnValue(JSON.stringify([userData]));
+    event.stopImmediatePropagation = jest.fn();
+    component.increaseQuantity(data().id, event);
+    expect(event.stopImmediatePropagation).toHaveBeenCalled();
+    expect(localStorageMock.getItem).toHaveBeenCalledWith('UserCart');
+    expect(localStorageMock.setItem).toHaveBeenCalledWith(
+      'UserCart',
+      JSON.stringify(component.product)
+    );
+    expect(component.signal.emit).toHaveBeenCalledWith(false);
+    expect(component.changeTotal).toHaveBeenCalled();
+    expect(component['count'].product).toEqual(component.product);
+
+    //for user not logged in
+    component.user = null;
+    component.product = [];
+    localStorageMock.getItem.mockReturnValue(JSON.stringify([data()]));
+    component.increaseQuantity(data().id, event);
+    expect(localStorageMock.getItem).toHaveBeenCalledWith('Cart');
+    expect(localStorageMock.setItem).toHaveBeenCalledWith(
+      'Cart',
+      JSON.stringify(component.product)
+    );
+    expect(component.signal.emit).toHaveBeenCalledWith(false);
+    expect(component.changeTotal).toHaveBeenCalled();
+    expect(component['count'].product).toEqual(component.product);
+  });
+
+  it('should decrese quantity', () => {
+    const event = new Event('click');
+    event.stopImmediatePropagation = jest.fn();
+    component['count'].decreaseQuantity = jest.fn();
+    component.signal.emit = jest.fn();
+    component.changeTotal = jest.fn();
+    component.decreaseQuantity(data().id, event);
+    expect(event.stopImmediatePropagation).toHaveBeenCalled();
+    expect(component['count'].decreaseQuantity).toHaveBeenCalledWith(data().id);
+    expect(component.signal.emit).toHaveBeenCalledWith(false);
+    expect(component.changeTotal).toHaveBeenCalled();
+  });
+
+  it('should change total', () => {
+    component.total.emit = jest.fn();
+    component.changeTotal();
+    expect(component.total.emit).toHaveBeenCalledWith(false);
+  });
+
+  it('Should run remove product function successfully', () => {
+    const event = new Event('click');
+    event.stopImmediatePropagation = jest.fn();
+    component['count'].removeProduct = jest.fn();
+    component.signal.emit = jest.fn();
+    component.changeTotal = jest.fn();
+    component.removeProduct(data(), event);
+    expect(event.stopImmediatePropagation).toHaveBeenCalled();
+    expect(component['count'].removeProduct).toHaveBeenCalledWith(data());
+    expect(component.signal.emit).toHaveBeenCalledWith(false);
+    expect(component.changeTotal).toHaveBeenCalled();
   });
 });

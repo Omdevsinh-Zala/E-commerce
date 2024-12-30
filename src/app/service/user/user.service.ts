@@ -14,8 +14,6 @@ import { from, ReplaySubject } from 'rxjs';
   providedIn: 'root',
 })
 export class UserService {
-  constructor() {}
-
   fireBaseAuth = inject(Auth);
   user = user(this.fireBaseAuth);
   private users = new ReplaySubject(1);
@@ -47,7 +45,7 @@ export class UserService {
   }
 
   logoutUser() {
-    let promise = this.fireBaseAuth.signOut().then(() => {
+    const promise = this.fireBaseAuth.signOut().then(() => {
       this.users.next(null);
       localStorage.removeItem('Access');
     });
@@ -68,18 +66,16 @@ export class UserService {
 
   auth = getAuth();
   updateUser(userName: string) {
-    let promise = this.auth
+    const promise = this.auth
       .updateCurrentUser(this.fireBaseAuth.currentUser)
-      .then((Response) =>
+      .then(() =>
         updateProfile(this.fireBaseAuth.currentUser, { displayName: userName })
       );
     return from(promise);
   }
 
   updatePass(password: string) {
-    let promise = updatePassword(this.fireBaseAuth.currentUser, password).then(
-      () => {}
-    );
+    const promise = updatePassword(this.fireBaseAuth.currentUser, password).then();
     return from(promise);
   }
 }

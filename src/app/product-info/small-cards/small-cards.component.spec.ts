@@ -2,10 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SmallCardsComponent } from './small-cards.component';
 import 'zone.js';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting,
-} from '@angular/platform-browser-dynamic/testing';
 import { InputSignal, signal } from '@angular/core';
 import { Products } from '../../service/product/products';
 
@@ -89,10 +85,21 @@ describe('SmallCardsComponent', () => {
 
     const cardElement =
       fixture.nativeElement.querySelector('.product-thumbnail');
-    let cardTitle = fixture.nativeElement.querySelector('.card-inner-title');
+    const cardTitle = fixture.nativeElement.querySelector('.card-inner-title');
     const actualThumnail = cardElement.src.split('/');
     const cardTitleText = cardTitle.textContent;
     expect(actualThumnail.pop()).toEqual(data().thumbnail);
     expect(cardTitleText).toEqual(data().title);
   });
+
+  it('should emit id', () => {
+    jest.useFakeTimers();
+    window.scrollTo = jest.fn();
+    component.signal.emit = jest.fn();
+    component.emmit(data().id);
+    expect(component.signal.emit).toHaveBeenCalledWith(data().id);
+    jest.advanceTimersByTime(500);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+    jest.useRealTimers();
+  })
 });

@@ -5,12 +5,10 @@ import {
   OnChanges,
   OnInit,
   output,
-  SimpleChanges,
 } from '@angular/core';
 import { Products } from '../../../service/product/products';
 import { CartBadgeService } from '../../../service/cartBadge/cart-badge.service';
 import { UserService } from '../../../service/user/user.service';
-import { UserCart } from '../../../service/cartBadge/user-cart';
 
 @Component({
   selector: 'app-cart-card',
@@ -18,13 +16,7 @@ import { UserCart } from '../../../service/cartBadge/user-cart';
   styleUrl: './cart-card.component.scss',
 })
 export class CartCardComponent implements OnChanges, OnInit {
-  constructor(private count: CartBadgeService) {
-    this.service.user$.subscribe({
-      next: (user) => {
-        this.user = user;
-      },
-    });
-  }
+  constructor(private count: CartBadgeService) {}
   service = inject(UserService);
   product: any[] = JSON.parse(localStorage.getItem('Cart') || '[]');
 
@@ -33,11 +25,16 @@ export class CartCardComponent implements OnChanges, OnInit {
   signal = output<boolean>();
 
   ngOnInit(): void {
+    this.service.user$.subscribe({
+      next: (user) => {
+        this.user = user;
+      },
+    });
     this.changeTotal();
   }
 
   user: string | null | unknown = null;
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     if (this.user) {
       this.product = JSON.parse(localStorage.getItem('UserCart') || '[]');
     } else {
@@ -49,15 +46,17 @@ export class CartCardComponent implements OnChanges, OnInit {
     e.stopImmediatePropagation();
     if (this.user) {
       this.product = JSON.parse(localStorage.getItem('UserCart') || '[]');
-      let userIndex = this.product.findIndex((cart) => cart.user == this.user);
-      let index = this.product[userIndex].products.findIndex(
+      const userIndex = this.product.findIndex(
+        (cart) => cart.user == this.user
+      );
+      const index = this.product[userIndex].products.findIndex(
         (product) => product.id == data
       );
       this.product[userIndex].products[index].quantity++;
       localStorage.setItem('UserCart', JSON.stringify(this.product));
     } else {
       this.product = JSON.parse(localStorage.getItem('Cart') || '[]');
-      let index = this.product.findIndex((product) => product.id == data);
+      const index = this.product.findIndex((product) => product.id == data);
       this.product[index].quantity++;
       localStorage.setItem('Cart', JSON.stringify(this.product));
     }

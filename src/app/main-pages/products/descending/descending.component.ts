@@ -3,7 +3,6 @@ import {
   input,
   OnChanges,
   output,
-  SimpleChanges,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
@@ -19,7 +18,7 @@ export class DescendingComponent implements OnChanges {
 
   constructor(private router: Router) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.descendingForm.setValue(null);
     if (this.recentValue().length != 0 && this.recentValue()[2] != undefined) {
       if (this.recentValue()[2][0] == 'des') {

@@ -1,19 +1,18 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserProfileService } from '../../service/profile/user-profile.service';
 import { UserService } from '../../service/user/user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
   styleUrl: './reset.component.scss',
 })
-export class ResetComponent {
+export class ResetComponent implements OnInit {
   auth = inject(UserProfileService);
   service = inject(UserService);
-  constructor() {
+  ngOnInit(): void {
     this.service.user$.subscribe({
       next: (user: string) => {
         this.user = user;
@@ -32,7 +31,7 @@ export class ResetComponent {
       },
     });
   }
-  user: string = '';
+  user = '';
   email: string | null = null;
   resetForm = new FormGroup({
     email: new FormControl({ value: this.email, disabled: true }, [
@@ -44,12 +43,12 @@ export class ResetComponent {
 
   errorMessage: string[] = [];
   timer: any;
-  successMessage: string = '';
+  successMessage = '';
   successTimer: any;
 
   router = inject(Router);
   resetPassword() {
-    let password = this.resetForm.value.password;
+    const password = this.resetForm.value.password;
     this.service.updatePass(password).subscribe({
       next: () => {
         this.successMessage = 'Password updated Successfully';

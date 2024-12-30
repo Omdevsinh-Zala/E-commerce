@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Products } from '../../service/product/products';
 
 @Component({

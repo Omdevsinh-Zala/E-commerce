@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../service/user/user.service';
-import { user } from '@angular/fire/auth';
 import { UserProfileService } from '../../service/profile/user-profile.service';
 import { UserProfile } from '../../service/profile/user-profile';
 
@@ -23,9 +22,9 @@ export class HomeComponent implements OnInit {
       next: (data) => {
         this.email = data.email;
         this.backEnd.getUserProfile().subscribe({
-          next: (data: { [key: string]: UserProfile }) => {
-            let value = Object.values(data);
-            let user = value.filter((data) => {
+          next: (data: Record<string, UserProfile>) => {
+            const value = Object.values(data);
+            value.filter((data) => {
               if (data.email == this.email) {
                 this.gender = data.gender;
                 this.phoneNumber = data.phoneNumber;

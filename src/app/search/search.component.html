@@ -11,7 +11,12 @@
       <div class="suggetions-wrap" #wrap>
         <ul class="title-list" #list>
           @for(title of productName | async;track $index) {
-          <li (click)="displayProduct(title)">
+          <li
+            (click)="displayProduct(title)"
+            (keydown.enter)="displayProduct(title)"
+            tabindex="0"
+            role="button"
+          >
             <div class="title">
               {{ title }}
             </div>
@@ -21,7 +26,13 @@
       </div>
     </div>
     <div class="account-wrap">
-      <div class="account-info-wrap" (click)="toggleAccount()">
+      <div
+        class="account-info-wrap"
+        (click)="toggleAccount()"
+        (keydown.enter)="toggleAccount()"
+        tabindex="0"
+        role="button"
+      >
         <mat-icon>account_circle</mat-icon>
         <h2 class="user-title">{{ user ? user : "Guest" }}</h2>
       </div>
@@ -34,10 +45,23 @@
         <hr />
         <button class="btn logout-btn">
           <mat-icon>power_settings_new</mat-icon>
-          <h3 class="account-title" (click)="logout()">Logout</h3>
+          <h3
+            class="account-title"
+            (click)="logout()"
+            (keydown.enter)="logout()"
+            tabindex="0"
+            role="button"
+          >
+            Logout
+          </h3>
         </button>
         } @else {
-        <button class="btn login-btn" (click)="login()">
+        <button
+          class="btn login-btn"
+          (click)="login()"
+          (keydown.enter)="login()"
+          tabindex="0"
+        >
           <mat-icon>power_settings_new</mat-icon>
           <h3 class="account-title">Login</h3>
         </button>

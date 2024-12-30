@@ -1,27 +1,13 @@
 import {
   Component,
-  computed,
-  DoCheck,
-  effect,
   ElementRef,
-  Inject,
-  inject,
-  Injector,
   input,
-  OnChanges,
   OnInit,
-  Signal,
-  signal,
-  SimpleChanges,
   ViewChild,
-  WritableSignal,
 } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Products } from '../service/product/products';
 import { CartBadgeService } from '../service/cartBadge/cart-badge.service';
-import { UserService } from '../service/user/user.service';
-import { Auth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -38,7 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   @ViewChild('hideNav') nav!: ElementRef;
-  isHidden: boolean = true;
+  isHidden = true;
   toggleNav() {
     if (this.isHidden) {
       this.nav.nativeElement.classList.add('nav-close');

@@ -3,7 +3,6 @@ import {
   input,
   OnChanges,
   output,
-  SimpleChanges,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
@@ -16,11 +15,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DiscountComponent implements OnChanges {
   recentValue = input<string[]>();
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.radioForm.setValue(null);
     if (this.recentValue().length != 0 && this.recentValue()[1] != undefined) {
-      let value = this.recentValue()[1] as unknown as string[];
-      let index = this.disconts.findIndex((data) => {
+      const value = this.recentValue()[1] as unknown as string[];
+      const index = this.disconts.findIndex((data) => {
         const lower = Number(data[0]);
         const upper = Number(data[1]);
         return Number(value[0]) == lower && Number(value[1]) == upper;

@@ -9,7 +9,7 @@ import { Products } from '../../service/product/products';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { from, map, Observable, scan, takeLast } from 'rxjs';
-import { Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../../service/user/user.service';
 import { UserCart } from '../../service/cartBadge/user-cart';
 import { CartBadgeService } from '../../service/cartBadge/cart-badge.service';
@@ -20,19 +20,17 @@ import { CartBadgeService } from '../../service/cartBadge/cart-badge.service';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent implements OnInit, AfterViewInit {
-  constructor() {}
-
   user: string | null | unknown = null;
   service = inject(UserService);
   ProductData: Products[] = [];
   columns: string[] = ['Cart'];
-  index: number = 0;
+  index = 0;
   dataSource = new MatTableDataSource<Products>(this.getProducts());
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  primary: string = 'blue';
-  totalPrice: number = 0;
+  primary = 'blue';
+  totalPrice = 0;
 
-  total: number = 0;
+  total = 0;
   ngOnInit(): void {
     this.service.user$.subscribe({
       next: (user) => {
@@ -54,10 +52,10 @@ export class CartComponent implements OnInit, AfterViewInit {
 
   getProducts(): Products[] {
     if (this.user) {
-      let data: UserCart[] = JSON.parse(
+      const data: UserCart[] = JSON.parse(
         localStorage.getItem('UserCart') || '[]'
       );
-      let userIndex = data.findIndex((product) => product.user == this.user);
+      const userIndex = data.findIndex((product) => product.user == this.user);
       return (this.ProductData = data[userIndex].products);
     } else {
       return (this.ProductData = JSON.parse(
@@ -67,8 +65,8 @@ export class CartComponent implements OnInit, AfterViewInit {
   }
 
   getTotal() {
-    let products: Observable<Products> = from(this.getProducts());
-    let total = products.pipe(
+    const products: Observable<Products> = from(this.getProducts());
+    const total = products.pipe(
       map((data) => {
         return data.price;
       }),
@@ -78,14 +76,14 @@ export class CartComponent implements OnInit, AfterViewInit {
     return total;
   }
 
-  onCatch(value: boolean) {
+  onCatch() {
     this.dataSource = new MatTableDataSource<Products>(this.getProducts());
     this.dataSource.paginator = this.paginator;
   }
 
-  runTotal(value: boolean) {
+  runTotal() {
     this.getProducts();
-    let total$ = from(this.ProductData)
+    from(this.ProductData)
       .pipe(
         map((products) => {
           return (
@@ -107,10 +105,10 @@ export class CartComponent implements OnInit, AfterViewInit {
   router = inject(Router);
   buyNow() {
     if (this.user) {
-      let data: UserCart[] = JSON.parse(
+      const data: UserCart[] = JSON.parse(
         localStorage.getItem('UserCart') || '[]'
       );
-      let userIndex = data.findIndex((cart) => cart.user == this.user);
+      const userIndex = data.findIndex((cart) => cart.user == this.user);
       if (userIndex != -1) {
         data.splice(userIndex, 1);
         localStorage.setItem('UserCart', JSON.stringify(data));

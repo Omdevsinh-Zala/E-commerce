@@ -16,12 +16,14 @@ import {
 } from '@angular/common/http/testing';
 
 import 'zone.js';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
+import { UserService } from '../user/user.service';
 
 describe('UserProfileService', () => {
   let service: UserProfileService;
   let httpTesting: HttpTestingController;
-  let env = environment.forUsers;
+  const env = environment.forUsers;
+  let userService: UserService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,11 +38,24 @@ describe('UserProfileService', () => {
     });
     service = TestBed.inject(UserProfileService);
     httpTesting = TestBed.inject(HttpTestingController);
+    userService = TestBed.inject(UserService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should set user', () => {
+    jest.useFakeTimers()
+    jest.runAllTimers();
+    userService.user$ = of('test')
+    userService.user$.subscribe({
+      next:(data: string) => {
+        expect(service.user).toBe(data)
+      }
+    })
+    jest.useRealTimers();
+  })
 
   it('should get user data', async () => {
     const user$ = service.getUserProfile();

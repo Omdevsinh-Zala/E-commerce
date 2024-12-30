@@ -3,7 +3,6 @@ import {
   input,
   OnChanges,
   output,
-  SimpleChanges,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
@@ -18,7 +17,7 @@ export class AscendingComponent implements OnChanges {
   recentValue = input<string[]>();
   constructor(private router: Router) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.ascendingForm.setValue(null);
     if (this.recentValue().length != 0 && this.recentValue()[2] != undefined) {
       if (this.recentValue()[2][0] == 'asc') {

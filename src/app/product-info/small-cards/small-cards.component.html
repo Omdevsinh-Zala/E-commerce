@@ -1,6 +1,16 @@
-<div class="card" (click)="emmit(data().id)">
+<div
+  class="card"
+  (click)="emmit(data().id)"
+  (keydown.enter)="emmit(data().id)"
+  tabindex="0"
+  role="button"
+>
   <div class="card-image-wrap">
-    <img class="product-thumbnail" [src]="data().thumbnail" />
+    <img
+      class="product-thumbnail"
+      [src]="data().thumbnail"
+      [alt]="data().title"
+    />
   </div>
   <div class="card-header-wrap">
     <h2 class="card-inner-title">{{ data().title }}</h2>

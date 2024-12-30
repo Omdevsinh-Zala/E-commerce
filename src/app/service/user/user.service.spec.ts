@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment.development';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import * as firebaseAuth from 'firebase/auth';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
 
 jest.mock('firebase/auth', () => ({
   createUserWithEmailAndPassword: jest.fn(),
@@ -158,4 +158,28 @@ describe('UserService', () => {
     await firstValueFrom(service.updatePass(newPass));
     expect(mockUpdatePassword).toHaveBeenCalledWith(auth.currentUser, newPass);
   });
+
+  it('should set user', async () => {
+    //For user logged in
+
+    const mockUserCredential = {
+      email: 'string',
+      displayName: 'string',
+    } as unknown as firebaseAuth.User;
+
+    service.user = of(mockUserCredential);
+    service.setUser();
+    const userData1 = await firstValueFrom(service.user);
+    expect(userData1).toBe(mockUserCredential);
+    const user1 = await firstValueFrom(service.user$);
+    expect(user1).toBe(mockUserCredential.displayName);
+
+    //For user not logged in
+    service.user = of(null);
+    service.setUser();
+    const userData2 = await firstValueFrom(service.user);
+    expect(userData2).toBe(null);
+    const user2 = await firstValueFrom(service.user$);
+    expect(user2).toBe(null);
+  })
 });

@@ -17,7 +17,7 @@ export class UserProfileService {
     });
   }
   private baseUrl = environment.forUsers;
-  private user: string = null;
+  user: string = null;
   private http = inject(HttpClient);
 
   getUserProfile() {

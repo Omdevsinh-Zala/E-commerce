@@ -27,7 +27,6 @@ import { SearchComponent } from '../../search/search.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import {
-  BrowserAnimationsModule,
   NoopAnimationsModule,
 } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -36,54 +35,53 @@ import { MatTableModule } from '@angular/material/table';
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
   let fixture: ComponentFixture<ProductsComponent>;
-  let route: ActivatedRoute;
   const mockActivatedRoute = {
     params: of({ id: '1' }),
     queryParams: of({ sort: 'asc' }),
-    snapshot: { paramMap: { get: (key: string) => '1' } },
+    snapshot: { paramMap: { get: () => '1' } },
   };
-  const data = {
-    id: '1',
-    title: 'string',
-    price: 100,
-    discountPercentage: 10,
-    rating: 4,
-    stock: 7,
-    tags: [''],
-    brand: 'string',
-    sku: 'string',
-    weight: 5,
-    dimensions: {
-      width: 8,
-      height: 8,
-      depth: 8,
-    },
-    warrantyInformation: 'string',
-    shippingInformation: 'string',
-    availabilityStatus: 'string',
-    reviews: [
-      {
-        rating: 3,
-        comment: 'string',
-        date: 'string',
-        reviewerName: 'string',
-        reviewerEmail: 'string',
-      },
-    ],
-    returnPolicy: 'string',
-    minimumOrderQuantity: 1,
-    meta: {
-      createdAt: 'string',
-      updatedAt: 'string',
-      barcode: 'string',
-      qrCode: 'string',
-    },
-    images: [''],
-    thumbnail: 'string',
-    category: '',
-    description: '',
-    quantity: 2,
-  };
+  // const data = {
+  //   id: '1',
+  //   title: 'string',
+  //   price: 100,
+  //   discountPercentage: 10,
+  //   rating: 4,
+  //   stock: 7,
+  //   tags: [''],
+  //   brand: 'string',
+  //   sku: 'string',
+  //   weight: 5,
+  //   dimensions: {
+  //     width: 8,
+  //     height: 8,
+  //     depth: 8,
+  //   },
+  //   warrantyInformation: 'string',
+  //   shippingInformation: 'string',
+  //   availabilityStatus: 'string',
+  //   reviews: [
+  //     {
+  //       rating: 3,
+  //       comment: 'string',
+  //       date: 'string',
+  //       reviewerName: 'string',
+  //       reviewerEmail: 'string',
+  //     },
+  //   ],
+  //   returnPolicy: 'string',
+  //   minimumOrderQuantity: 1,
+  //   meta: {
+  //     createdAt: 'string',
+  //     updatedAt: 'string',
+  //     barcode: 'string',
+  //     qrCode: 'string',
+  //   },
+  //   images: [''],
+  //   thumbnail: 'string',
+  //   category: '',
+  //   description: '',
+  //   quantity: 2,
+  // };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -119,7 +117,6 @@ describe('ProductsComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductsComponent);
-    route = TestBed.inject(ActivatedRoute);
     component = fixture.componentInstance;
   });
 

@@ -4,7 +4,7 @@
       <mat-radio-group
         [formControl]="categoryForm"
         class="radio-group"
-        (change)="changeCategory($event)"
+        (change)="changeCategory()"
       >
         @for(category of categories;track category) {
         <mat-radio-button

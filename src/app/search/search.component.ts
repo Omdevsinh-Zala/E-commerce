@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('expand') accountInfo!: ElementRef;
   user: string | undefined | null | unknown = '';
 
-  isShown: boolean = false;
+  isShown = false;
   toggleAccount() {
     if (this.isShown) {
       this.accountInfo.nativeElement.classList.add('hide');

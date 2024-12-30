@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user/user.service';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class SignupComponent implements AfterViewInit {
 
   router = inject(Router);
   errorMessage: string[] = [];
-  successMessage: string = '';
+  successMessage = '';
   timer: any;
   successTimer: any;
   post = inject(UserProfileService);
@@ -57,7 +57,7 @@ export class SignupComponent implements AfterViewInit {
           this.router.navigateByUrl('login');
           this.successMessage = '';
         }, 1000);
-        let postUser: UserProfile = {
+        const postUser: UserProfile = {
           firstName: firstName,
           lastName: lastName,
           email: email,

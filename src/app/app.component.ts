@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from './service/user/user.service';
 
 @Component({
@@ -6,10 +6,10 @@ import { UserService } from './service/user/user.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'mycart';
   auth = inject(UserService);
-  constructor() {
+  ngOnInit(): void {
     if (this.auth.access) {
       this.auth.setUser();
     }

@@ -25,18 +25,18 @@ export class UpdateComponent implements OnInit {
       next: (data) => {
         this.email = data.email;
         this.backEnd.getUserProfile().subscribe({
-          next: (data: { [key: string]: UserProfile }) => {
-            let keys = Object.keys(data);
-            let value = Object.values(data);
-            let index: number = 0;
-            let user: UserProfile[] = value.filter((data) => {
+          next: (data: Record<string, UserProfile>) => {
+            const keys = Object.keys(data);
+            const value = Object.values(data);
+            let index = 0;
+            value.filter((data) => {
               if (data['email'] == this.email) {
                 this.gender = data['gender'];
                 this.phoneNumber = data['phoneNumber'];
                 this.address = data['address'];
                 this.watch();
                 index = value.findIndex((data) => data['email'] == this.email);
-                let key = keys[index];
+                const key = keys[index];
                 this.endPoint.next(key);
               }
             });
@@ -46,7 +46,7 @@ export class UpdateComponent implements OnInit {
     });
   }
   errorMessage: string[] = [];
-  successMessage: string = '';
+  successMessage = '';
 
   endPoint = new ReplaySubject(1);
   endPoint$ = this.endPoint.asObservable();
@@ -95,13 +95,12 @@ export class UpdateComponent implements OnInit {
   successTimer: any;
   router = inject(Router);
   updateUser() {
-    let firstName = this.updateForm.value.firstName;
-    let lastName = this.updateForm.value.lastName;
-    let gender = this.updateForm.value.gender;
-    let email = this.updateForm.value.email;
-    let phoneNumber = this.updateForm.value.phoneNumber;
-    let address = this.updateForm.value.address;
-    let userProfile: UserProfile = {
+    const firstName = this.updateForm.value.firstName;
+    const lastName = this.updateForm.value.lastName;
+    const gender = this.updateForm.value.gender;
+    const phoneNumber = this.updateForm.value.phoneNumber;
+    const address = this.updateForm.value.address;
+    const userProfile: UserProfile = {
       firstName: firstName,
       lastName: lastName,
       email: this.email,

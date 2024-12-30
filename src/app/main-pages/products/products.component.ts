@@ -30,22 +30,22 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   productsData: Products[] = [];
   filteredData: Products[] = [];
-  isFetched: boolean = false;
-  isFiltered: boolean = false;
-  fromFilter: boolean = false;
-  isEmpty: boolean = false;
+  isFetched = false;
+  isFiltered = false;
+  fromFilter = false;
+  isEmpty = false;
   products = new MatTableDataSource<Products>(this.productsData);
   column: string[] = ['Products'];
-  fromDiscount: boolean = false;
-  ChangeSignal: boolean = false;
+  fromDiscount = false;
+  ChangeSignal = false;
   selectedValues!: string[];
   updatedProductsData: Products[] = [];
   searchedProduct: Products[] = [];
-  isSearched: boolean = false;
+  isSearched = false;
   searchDataSource = new MatTableDataSource<Products>(this.searchedProduct);
 
   //for discount component
-  clearDiscount: boolean = false;
+  clearDiscount = false;
   private runClear() {
     this.clearDiscount = !this.clearDiscount;
   }
@@ -105,14 +105,14 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.secondary.nativeElement.style.display = 'none';
         this.spin.nativeElement.style.display = 'block';
         if (params['Category'] && !params['discount'] && !params['sort']) {
-          let category: string = params['Category'];
+          const category: string = params['Category'];
           this.categoryFiltering(category);
         } else if (
           !params['Category'] &&
           params['discount'] &&
           !params['sort']
         ) {
-          let discount: string[] = params['discount'];
+          const discount: string[] = params['discount'];
           this.discountFiltering(discount);
         } else if (
           !params['Category'] &&
@@ -188,7 +188,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.spin.nativeElement.style.display = 'block';
     this.secondary.nativeElement.style.display = 'none';
     this.runClear();
-    let Data = from(this.productsData);
+    const Data = from(this.productsData);
     Data.pipe(
       filter((products) => products.category === category),
       toArray()
@@ -219,7 +219,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   discountFiltering(discount: string[]) {
     this.spin.nativeElement.style.display = 'block';
     this.secondary.nativeElement.style.display = 'none';
-    let data = from(this.productsData);
+    const data = from(this.productsData);
     data
       .pipe(
         filter(
@@ -512,7 +512,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   withOutSort(category: string, discount: string[]) {
     this.spin.nativeElement.style.display = 'block';
     this.secondary.nativeElement.style.display = 'none';
-    let data = from(this.productsData);
+    const data = from(this.productsData);
     data
       .pipe(
         filter((products) => products.category === category),
@@ -546,7 +546,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   sortWithId() {
     this.spin.nativeElement.style.display = 'block';
     this.secondary.nativeElement.style.display = 'none';
-    let data = of(this.productsData);
+    const data = of(this.productsData);
     data
       .pipe(
         map((products) => {

@@ -34,8 +34,8 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
 
   productData!: Products;
   images: string[] = [];
-  ratings: number = 0;
-  productId: string = '0';
+  ratings = 0;
+  productId = '0';
   allProducts: Products[] = [];
 
   ngOnInit(): void {
@@ -47,19 +47,20 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
         this.getProduct();
       },
     });
-    console.warn = () => {};
   }
 
   ngAfterViewInit(): void {
     setTimeout(this.swiperInit, 800);
     setTimeout(() => {
-      this.first.nativeElement.style.display = 'block';
-      this.spin.nativeElement.style.display = 'none';
+      if(this.first && this.spin) {
+        this.first.nativeElement.style.display = 'block';
+        this.spin.nativeElement.style.display = 'none';
+      }
     }, 1000);
   }
 
   swiperInit() {
-    const swiper = new Swiper('.firstSwiper', {
+    new Swiper('.firstSwiper', {
       // Optional parameters
       direction: 'horizontal',
       loop: true,
@@ -90,7 +91,7 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       },
     });
 
-    const secondSwiper = new Swiper('.secondSwiper', {
+    new Swiper('.secondSwiper', {
       // Optional parameters
       direction: 'vertical',
       loop: true,
@@ -136,7 +137,7 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
   }
 
   //For table
-  show: boolean = false;
+  show = false;
   filteredProducts: Products[] = [];
   column: string[] = ['Data'];
   @ViewChild(MatPaginator) paginaotr!: MatPaginator;
@@ -150,7 +151,7 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
       )
       .subscribe({
         next: (data) => {
-          let index = data.findIndex(
+          const index = data.findIndex(
             (product) => product.id == this.productData.id
           );
           if (index != -1) {
@@ -175,7 +176,7 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
   }
 
   //For add to cart functionality
-  product: any[] = JSON.parse(localStorage.getItem('Cart') || '[]');
+  product: Products[] = JSON.parse(localStorage.getItem('Cart') || '[]');
   count = inject(CartBadgeService);
   addToCart(data: Products, e: Event) {
     e.stopImmediatePropagation();

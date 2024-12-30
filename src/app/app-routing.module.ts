@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductInfoComponent } from './product-info/product-info.component';
-import { TitleService } from './service/title/title.service';
 import { MainRouterComponent } from './main-router/main-router.component';
 import { LoginComponent } from './form/login/login.component';
 import { SignupComponent } from './form/signup/signup.component';
@@ -57,7 +56,6 @@ const routes: Routes = [
       {
         path: 'products/:id',
         component: ProductInfoComponent,
-        // title: TitleService
       },
     ],
   },

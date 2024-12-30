@@ -10,8 +10,6 @@ import { UserProfileService } from '../../service/profile/user-profile.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
-
   ngOnInit(): void {
     this.auth.user$.subscribe({
       next: (data) => {
@@ -34,7 +32,7 @@ export class LoginComponent implements OnInit {
   router = inject(Router);
 
   errorMessage: string[] = [];
-  successMessage: string = '';
+  successMessage = '';
   timer: any;
   successTimer: any;
   loginUser() {
