@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { UserService } from '../user/user.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,8 +8,7 @@ import { UserProfile } from './user-profile';
   providedIn: 'root',
 })
 export class UserProfileService {
-  service = inject(UserService);
-  constructor() {
+  constructor(public service: UserService, private http: HttpClient) {
     this.service.user$.subscribe({
       next: (user: string) => {
         this.user = user;
@@ -18,7 +17,6 @@ export class UserProfileService {
   }
   private baseUrl = environment.forUsers;
   user: string = null;
-  private http = inject(HttpClient);
 
   getUserProfile() {
     return this.http.get(`${this.baseUrl + '/users'}.json`);

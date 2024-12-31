@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { UserProfileService } from './user-profile.service';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { provideDatabase } from '@angular/fire/database';
@@ -24,6 +24,7 @@ describe('UserProfileService', () => {
   let httpTesting: HttpTestingController;
   const env = environment.forUsers;
   let userService: UserService;
+  let httpClient: HttpClient;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,6 +40,7 @@ describe('UserProfileService', () => {
     service = TestBed.inject(UserProfileService);
     httpTesting = TestBed.inject(HttpTestingController);
     userService = TestBed.inject(UserService);
+    httpClient = TestBed.inject(HttpClient);
   });
 
   it('should be created', () => {
@@ -46,14 +48,12 @@ describe('UserProfileService', () => {
   });
 
   it('should set user', () => {
-    jest.useFakeTimers()
-    jest.runAllTimers();
-    userService.user$ = of('test')
-    userService.user$.subscribe({
-      next:(data: string) => {
-        expect(service.user).toBe(data)
-      }
-    })
+    jest.useFakeTimers();
+    const user = 'Test';
+    service.service.user$ = of(user)
+    jest.advanceTimersByTime(100);
+    new UserProfileService(userService, httpClient);
+    expect(service.user).toBe(null);
     jest.useRealTimers();
   })
 

@@ -131,24 +131,15 @@ describe('UserService', () => {
     expect(usersSpy).toHaveBeenCalledWith(null);
   });
 
-  // it('should update user successfully', async () => {
-  //   const newName = 'XYZ';
-  //   const mockAuth = {
-  //     updateCurrentUser: jest.fn().mockResolvedValue(undefined),
-  //   };
-  //   (firebaseAuth.getAuth as jest.Mock).mockResolvedValue(mockAuth);
-  //   const mockUpdateUser = firebaseAuth.updateCurrentUser as jest.Mock;
-  //   mockUpdateUser.mockResolvedValue({});
-
-  //   const mockUpdateProfile = firebaseAuth.updateProfile as jest.Mock;
-  //   mockUpdateProfile.mockResolvedValue({});
-
-  //   await firstValueFrom(service.updateUser(newName));
-  //   expect(mockAuth.updateCurrentUser).toHaveBeenCalledWith(auth.currentUser);
-  //   expect(mockUpdateProfile).toHaveBeenCalledWith(auth.currentUser, {
-  //     displayName: newName,
-  //   });
-  // });
+  it('should update user successfully', async () => {
+    const name = 'xyz';
+    service.auth.updateCurrentUser = jest.fn().mockResolvedValue(of(undefined));
+    const updateProfileMock = firebaseAuth.updateProfile as jest.Mock;
+    updateProfileMock.mockResolvedValue({});
+    await firstValueFrom(service.updateUser(name));
+    expect(service.auth.updateCurrentUser).toHaveBeenCalledWith(service.fireBaseAuth.currentUser);
+    expect(updateProfileMock).toHaveBeenCalledWith(service.fireBaseAuth.currentUser, { displayName: name });
+  });
 
   it('should update Password successfully', async () => {
     const newPass = '123efvth65y3tgrvf';
