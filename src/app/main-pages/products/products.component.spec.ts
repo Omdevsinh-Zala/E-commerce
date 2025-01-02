@@ -487,5 +487,20 @@ describe('ProductsComponent', () => {
     expect(component.secondary.nativeElement.style.display).toBe('block');
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
+
+    //for by-discount
+    component.productsData = [{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['asc', 'By-discount'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
   })
 });
