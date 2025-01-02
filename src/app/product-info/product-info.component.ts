@@ -162,9 +162,6 @@ export class ProductInfoComponent implements OnInit, AfterViewInit {
             this.filteredProducts
           );
         },
-        error: (err) => {
-          console.error(err);
-        },
         complete: () => {
           this.show = true;
           setTimeout(() => {

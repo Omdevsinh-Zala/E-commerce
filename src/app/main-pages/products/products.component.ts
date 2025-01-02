@@ -12,7 +12,7 @@ import { Products } from '../../service/product/products';
 import { auditTime, filter, from, map, of, Subscription, toArray } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../service/user/user.service';
 
 @Component({
@@ -96,7 +96,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscription!: Subscription;
 
   filteringData() {
-    let option!: Params;
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
@@ -202,9 +201,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.products = new MatTableDataSource<Products>(data);
         this.updatedProductsData = data;
       },
-      error: (err) => {
-        console.error(err);
-      },
       complete: () => {
         this.products.paginator = this.paginator;
         setTimeout(() => {
@@ -240,9 +236,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
           this.updatedProductsData = data;
           this.products.paginator = this.paginator;
         },
-        error: (err) => {
-          console.error(err);
-        },
         complete: () => {
           this.filteredData = [];
           setTimeout(() => {
@@ -277,7 +270,7 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
             );
           })
         )
-        .subscribe((c) => (data = of(c)));
+        .subscribe((c) => data = of(c));
     } else if (category != null && discount != null) {
       data
         .pipe(
@@ -314,9 +307,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
                 }
                 this.products = new MatTableDataSource<Products>(data);
                 this.updatedProductsData = data;
-              },
-              error: (err) => {
-                console.error(err);
               },
               complete: () => {
                 this.products.paginator = this.paginator;
