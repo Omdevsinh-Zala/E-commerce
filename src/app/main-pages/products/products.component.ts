@@ -342,9 +342,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.products = new MatTableDataSource<Products>(data);
                 this.updatedProductsData = data;
               },
-              error: (err) => {
-                console.error(err);
-              },
               complete: () => {
                 this.products.paginator = this.paginator;
                 setTimeout(() => {
@@ -374,9 +371,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
                 }
                 this.products = new MatTableDataSource<Products>(data);
                 this.updatedProductsData = data;
-              },
-              error: (err) => {
-                console.error(err);
               },
               complete: () => {
                 this.products.paginator = this.paginator;
@@ -410,9 +404,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
                 }
                 this.products = new MatTableDataSource<Products>(data);
                 this.updatedProductsData = data;
-              },
-              error: (err) => {
-                console.error(err);
               },
               complete: () => {
                 this.products.paginator = this.paginator;
@@ -448,9 +439,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.products = new MatTableDataSource<Products>(data);
                 this.updatedProductsData = data;
               },
-              error: (err) => {
-                console.error(err);
-              },
               complete: () => {
                 this.products.paginator = this.paginator;
                 setTimeout(() => {
@@ -480,9 +468,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
                 }
                 this.products = new MatTableDataSource<Products>(data);
                 this.updatedProductsData = data;
-              },
-              error: (err) => {
-                console.error(err);
               },
               complete: () => {
                 this.products.paginator = this.paginator;

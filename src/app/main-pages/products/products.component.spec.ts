@@ -134,6 +134,12 @@ describe('ProductsComponent', () => {
     expect(component.fetchData).toHaveBeenCalled();
   });
 
+  it('should run clear', () => {
+    component.clearDiscount = true;
+    component['runClear']();
+    expect(component.clearDiscount).toBe(false)
+  })
+
   it('should run fetch data function properly', () => {
     component['api'].getAllProducts = jest.fn().mockReturnValue(of([data]));
     component.productsData.push = jest.fn();
@@ -502,5 +508,85 @@ describe('ProductsComponent', () => {
     expect(component.secondary.nativeElement.style.display).toBe('block');
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
-  })
+
+    //For dis
+    //for by-rating
+    component.productsData = [{ ...data, category: 'mobile', rating: 5 }, { ...data, category: 'mobile', rating: 4 }, { ...data, category: 'mobile', rating: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['dis', 'By-rating'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', rating: 3 }, { ...data, category: 'mobile', rating: 4 }, { ...data, category: 'mobile', rating: 5 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for by-price
+    component.productsData = [{ ...data, category: 'mobile', price: 5, discountPercentage: 23 }, { ...data, category: 'mobile', price: 4, discountPercentage: 20 }, { ...data, category: 'mobile', price: 3, discountPercentage: 12 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['dis', 'By-price'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', price: 3, discountPercentage: 12 }, { ...data, category: 'mobile', price: 4, discountPercentage: 20 }, { ...data, category: 'mobile', price: 5, discountPercentage: 23 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for by-discount
+    component.productsData = [{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['dis', 'By-discount'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', discountPercentage: 3 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 5 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for discount
+    //For asc
+    //for by-rating
+    component.productsData = [{ ...data, category: 'mobile', rating: 5, discountPercentage: 10 }, { ...data, category: 'mobile', rating: 4, discountPercentage: 10 }, { ...data, category: 'mobile', rating: 3, discountPercentage: 10}];
+    jest.useFakeTimers();
+    component.sortFiltering(null, ['asc', 'By-rating'], ['0','100']);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', rating: 5, discountPercentage: 10 }, { ...data, category: 'mobile', rating: 4, discountPercentage: 10 }, { ...data, category: 'mobile', rating: 3, discountPercentage: 10}]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for both discount and category
+    //For asc
+    //for by-rating
+    component.productsData = [{ ...data, category: 'mobile', rating: 5, discountPercentage: 12 }, { ...data, category: 'mobile', rating: 4, discountPercentage: 12 }, { ...data, category: 'mobile', rating: 3, discountPercentage: 12 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['asc', 'By-rating'], ['10','100']);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', rating: 5, discountPercentage: 12 }, { ...data, category: 'mobile', rating: 4, discountPercentage: 12 }, { ...data, category: 'mobile', rating: 3, discountPercentage: 12 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+  });
 });
