@@ -550,7 +550,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   searchedProductName(value: string) {
     if (value) {
       this.isSearched = true;
-      console.log('asd')
     } else {
       this.isSearched = false;
     }
