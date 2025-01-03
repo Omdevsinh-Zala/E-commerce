@@ -504,9 +504,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
           this.products = new MatTableDataSource<Products>(data);
           this.updatedProductsData = data;
         },
-        error: (err) => {
-          console.error(err);
-        },
         complete: () => {
           this.products.paginator = this.paginator;
           setTimeout(() => {
@@ -540,9 +537,6 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
           this.products = new MatTableDataSource<Products>(data);
           this.updatedProductsData = data;
         },
-        error: (err) => {
-          console.error(err);
-        },
         complete: () => {
           this.products.paginator = this.paginator;
           setTimeout(() => {
@@ -554,10 +548,11 @@ export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   searchedProductName(value: string) {
-    if (value.length == 0) {
-      this.isSearched = false;
-    } else {
+    if (value) {
       this.isSearched = true;
+      console.log('asd')
+    } else {
+      this.isSearched = false;
     }
     from(this.productsData)
       .pipe(

@@ -479,6 +479,21 @@ describe('ProductsComponent', () => {
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
 
+    //for empty data
+    component.productsData = [{ ...data, category: 'string', rating: 5 }, { ...data, category: 'string', rating: 4 }, { ...data, category: 'string', rating: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['asc', 'By-rating'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
     //for by-price
     component.productsData = [{ ...data, category: 'mobile', price: 5, discountPercentage: 23 }, { ...data, category: 'mobile', price: 4, discountPercentage: 20 }, { ...data, category: 'mobile', price: 3, discountPercentage: 12 }];
     jest.useFakeTimers();
@@ -494,6 +509,21 @@ describe('ProductsComponent', () => {
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
 
+    //for empty data
+    component.productsData = [{ ...data, category: 'string', price: 5, discountPercentage: 23 }, { ...data, category: 'string', price: 4, discountPercentage: 20 }, { ...data, category: 'string', price: 3, discountPercentage: 12 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['asc', 'By-price'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
     //for by-discount
     component.productsData = [{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }];
     jest.useFakeTimers();
@@ -503,6 +533,21 @@ describe('ProductsComponent', () => {
     jest.advanceTimersByTime(100);
     expect(component.isEmpty).toBe(false);
     expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for empty data
+    component.productsData = [{ ...data, category: 'string', discountPercentage: 5 }, { ...data, category: 'string', discountPercentage: 4 }, { ...data, category: 'string', discountPercentage: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('mobile', ['asc', 'By-discount'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
     expect(component.products.paginator).toEqual(component.paginator);
     jest.advanceTimersByTime(1000);
     expect(component.secondary.nativeElement.style.display).toBe('block');
@@ -525,6 +570,21 @@ describe('ProductsComponent', () => {
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
 
+    //for empty data
+    component.productsData = [{ ...data, category: 'mobile', rating: 5 }, { ...data, category: 'mobile', rating: 4 }, { ...data, category: 'mobile', rating: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('string', ['dis', 'By-rating'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
     //for by-price
     component.productsData = [{ ...data, category: 'mobile', price: 5, discountPercentage: 23 }, { ...data, category: 'mobile', price: 4, discountPercentage: 20 }, { ...data, category: 'mobile', price: 3, discountPercentage: 12 }];
     jest.useFakeTimers();
@@ -540,6 +600,21 @@ describe('ProductsComponent', () => {
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
 
+    //for empty data
+    component.productsData = [{ ...data, category: 'mobile', price: 5, discountPercentage: 23 }, { ...data, category: 'mobile', price: 4, discountPercentage: 20 }, { ...data, category: 'mobile', price: 3, discountPercentage: 12 }];
+    jest.useFakeTimers();
+    component.sortFiltering('string', ['dis', 'By-price'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
     //for by-discount
     component.productsData = [{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }];
     jest.useFakeTimers();
@@ -549,6 +624,21 @@ describe('ProductsComponent', () => {
     jest.advanceTimersByTime(100);
     expect(component.isEmpty).toBe(false);
     expect(component.updatedProductsData).toEqual([{ ...data, category: 'mobile', discountPercentage: 3 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 5 }]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for empty data
+    component.productsData = [{ ...data, category: 'mobile', discountPercentage: 5 }, { ...data, category: 'mobile', discountPercentage: 4 }, { ...data, category: 'mobile', discountPercentage: 3 }];
+    jest.useFakeTimers();
+    component.sortFiltering('string', ['dis', 'By-discount'], null);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
     expect(component.products.paginator).toEqual(component.paginator);
     jest.advanceTimersByTime(1000);
     expect(component.secondary.nativeElement.style.display).toBe('block');
@@ -572,6 +662,21 @@ describe('ProductsComponent', () => {
     expect(component.spin.nativeElement.style.display).toBe('none');
     jest.useRealTimers();
 
+    //for empty data
+    component.productsData = [{ ...data, category: 'mobile', rating: 5, discountPercentage: 10 }, { ...data, category: 'mobile', rating: 4, discountPercentage: 10 }, { ...data, category: 'mobile', rating: 3, discountPercentage: 10}];
+    jest.useFakeTimers();
+    component.sortFiltering(null, ['asc', 'By-rating'], ['0','10']);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
     //for both discount and category
     //For asc
     //for by-rating
@@ -587,6 +692,127 @@ describe('ProductsComponent', () => {
     jest.advanceTimersByTime(1000);
     expect(component.secondary.nativeElement.style.display).toBe('block');
     expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+
+    //for empty data
+    component.productsData = [{ ...data, category: 'mobile', rating: 5, discountPercentage: 12 }, { ...data, category: 'mobile', rating: 4, discountPercentage: 12 }, { ...data, category: 'mobile', rating: 3, discountPercentage: 12 }];
+    jest.useFakeTimers();
+    component.sortFiltering('string', ['asc', 'By-rating'], ['0','10']);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    jest.useRealTimers();
+  });
+
+  it('should run withOutSort functio properly', () => {
+    component.spin = new ElementRef({
+      style: {
+        display: ''
+      }
+    });
+    component.secondary = new ElementRef({
+      style: {
+        display: ''
+      }
+    });
+    const PRODUCT_DATA = [{ ...data, category:'mobile', discountPercentage:5 },{ ...data, category:'mobile', discountPercentage:2 },{ ...data, category:'mobile', discountPercentage:8 }];
+    component.productsData = PRODUCT_DATA;
+    jest.useFakeTimers();
+    component.withOutSort('mobile', ['0','10']);
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.updatedProductsData).toEqual(PRODUCT_DATA);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+  });
+
+  it('should rin sirWithId properly', () => {
+    component.spin = new ElementRef({
+      style: {
+        display: ''
+      }
+    });
+    component.secondary = new ElementRef({
+      style: {
+        display: ''
+      }
+    });
+    const PRODUCT_DATA = [{ ...data, category:'mobile', id: '1' },{ ...data, category:'mobile', id: '2' },{ ...data, category:'mobile', id: '3' }];
+    component.productsData = PRODUCT_DATA;
+    jest.useFakeTimers();
+    component.sortWithId();
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(false);
+    expect(component.updatedProductsData).toEqual(PRODUCT_DATA);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    jest.useRealTimers();
+    
+    //for empty data
+    component.productsData = [];
+    jest.useFakeTimers();
+    component.sortWithId();
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.secondary.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(100);
+    expect(component.isEmpty).toBe(true);
+    expect(component.updatedProductsData).toEqual([]);
+    expect(component.products.paginator).toEqual(component.paginator);
+    jest.advanceTimersByTime(1000);
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    expect(component.secondary.nativeElement.style.display).toBe('block');
+    jest.useRealTimers();
+  });
+  
+  it('should search product name', () => {
+    const PRODUCT_DATA = [{ ...data, title:'mobile', id: '1' },{ ...data, title:'modern laptop', id: '2' },{ ...data, title:'modern gun', id: '3' }];
+    component.productsData = PRODUCT_DATA;
+    jest.useFakeTimers();
+    component.searchedProductName('mobile');
+    jest.advanceTimersByTime(100);
+    expect(component.searchDataSource.paginator).toEqual(component.paginator);
+    jest.useRealTimers();
+    
+    //for empty data
+    jest.useFakeTimers();
+    component.searchedProductName('');
+    expect(component.isSearched).toBe(false);
+    jest.advanceTimersByTime(100); 
+    expect(component.isSearched).toEqual(false);
+    jest.useRealTimers();
+  });
+
+  it('should run change page', () => {
+    component.spin = new ElementRef({
+      style: {
+        display: ''
+      }
+    });
+    component.maintable = new ElementRef({
+      style: {
+        display: ''
+      }
+    });
+    jest.useFakeTimers();
+    component.changePage();
+    expect(component.spin.nativeElement.style.display).toBe('block');
+    expect(component.maintable.nativeElement.style.display).toBe('none');
+    jest.advanceTimersByTime(1000);
+    expect(component.spin.nativeElement.style.display).toBe('none');
+    expect(component.maintable.nativeElement.style.display).toBe('block');
     jest.useRealTimers();
   });
 });
